@@ -1,45 +1,129 @@
 """Scraper artikel CNN Indonesia untuk analisis sentimen PLTN & PLTU.
 
-Mengambil artikel berita dari hasil pencarian CNN Indonesia berdasarkan kata kunci energi (nuklir & batu bara), lalu menyimpan judul, tanggal, dan isi artikel ke berkas JSON untuk analisis sentimen/opini penulis.
+Mencari artikel lewat halaman pencarian CNN Indonesia untuk tiap kata kunci,
+menelusuri seluruh halaman hasil (paginasi) sampai batas aman, lalu mengambil
+judul/tanggal/isi tiap artikel dan menyimpannya untuk analisis sentimen/opini
+penulis.
 
-Catatan teknis: hasil pencarian CNN dimuat lewat JavaScript (skeleton loader),jadi crawler menunggu konten dinamis termuat sebelum mengambil tautan artikel.
+Desain tahan-gangguan (terinspirasi folder crawler/detik, disederhanakan
+untuk satu file):
+  - Cache JSONL (append-only) -> tiap artikel langsung disimpan begitu
+    berhasil di-scrape, jadi kalau proses berhenti di tengah jalan
+    (Ctrl+C, anti-bot, koneksi putus), tinggal dijalankan ulang: artikel
+    yang sudah ada di cache otomatis dilewati.
+  - Retry dengan backoff untuk kegagalan jaringan / deteksi anti-bot CNN.
+  - Paginasi berhenti otomatis begitu satu halaman tidak lagi membawa URL
+    baru, dibatasi MAX_PAGES_PER_KEYWORD sebagai jaring pengaman (hasil
+    pencarian CNN mulai melenceng dari topik di halaman yang sangat jauh).
+
+Catatan teknis: hasil pencarian CNN dimuat lewat JavaScript (skeleton
+loader), jadi crawler menunggu konten dinamis termuat sebelum mengambil
+tautan artikel.
 """
 
 import asyncio
+import csv
 import json
 import re
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
+from pathlib import Path
+from typing import Optional
 from urllib.parse import quote_plus, urljoin, urlparse
 
 from bs4 import BeautifulSoup
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 
-
 # Konfigurasi
 BASE_URL = "https://www.cnnindonesia.com"
-SEARCH_URL = "https://www.cnnindonesia.com/search?query={query}"
+SEARCH_URL_TEMPLATE = "https://www.cnnindonesia.com/search?query={query}&page={page}"
 
-# Kata kunci yang mengarah pada sentimen energi nuklir & batu bara.
-KEYWORDS = ["PLTN", "PLTU", "nuklir", "batu bara"]
+# Kata kunci: (query pencarian, target label untuk kolom anotasi sentimen)
+KEYWORDS: list[tuple[str, str]] = [
+    # PLTN - general
+    ("PLTN", "PLTN"),
+    ("energi nuklir", "PLTN"),
+    # PLTN - pro-development
+    ("rencana pembangunan PLTN", "PLTN"),
+    # PLTN - kontra & concerns
+    ("tolak PLTN", "PLTN"),
+    ("keselamatan nuklir", "PLTN"),
+    ("limbah radioaktif", "PLTN"),
+    # PLTU - general
+    ("PLTU", "PLTU"),
+    ("pembangkit listrik tenaga uap", "PLTU"),
+    # PLTU - kontra & concerns
+    ("pensiun dini PLTU", "PLTU"),
+    ("emisi PLTU", "PLTU"),
+    ("warga tolak PLTU", "PLTU"),
+    # Context
+    ("transisi energi Indonesia", "UMUM"),
+]
 
-# Jumlah artikel yang diambil per kata kunci. Naikkan nilainya untuk dataset yang lebih besar (mis. 50). Mulai dari 15 untuk pengujian.
-ARTICLE_LIMIT_PER_KEYWORD = 15
+# Jaring pengaman jumlah halaman pencarian per kata kunci. Pencarian akan berhenti lebih cepat begitu satu halaman tidak membawa URL baru, tapi angka ini mencegah crawl "tak berujung" ke halaman yang sudah tidak relevan (hasil pengujian: relevansi menurun tajam setelah ~halaman 80).
+MAX_PAGES_PER_KEYWORD = 50
 
-OUTPUT_FILE = "hasil_scraping_cnn.json"
+# Rentang tahun artikel yang diambil. Format "YYYY-MM-DD", atau None berarti tidak ada batas. Artikel di luar rentang dilewati sebelum halamannya dibuka (tahun diambil dari ID artikel di URL),.
+START_DATE: Optional[str] = "2019-01-01"
+END_DATE: Optional[str] = None
 
-# Waktu tunggu maksimum saat memuat halaman (ms). Halaman berat JS -> lebih lama.
-PAGE_TIMEOUT = 60000
+# Berkas cache JSONL: satu baris = satu artikel. Dipakai untuk resume.
+CACHE_FILE = Path("cnn_energy_cache.jsonl")
+
+# Hasil akhir setelah cache diekspor.
+OUTPUT_JSON = Path("hasil_scraping_cnn_attempt2.json")
+OUTPUT_CSV = Path("hasil_scraping_cnn_attempt2.csv")
+
+# Waktu tunggu maksimum saat memuat halaman (ms).
+PAGE_TIMEOUT = 30000
 
 # Jeda antar-permintaan (detik) agar sopan terhadap server CNN.
 REQUEST_DELAY = 1.5
 
+# Retry untuk kegagalan jaringan / anti-bot.
+MAX_FETCH_ATTEMPTS = 3
+RETRY_BASE_DELAY = 5.0  # detik; backoff eksponensial: 5s, 10s, 20s, ...
+
 # Pola ID artikel CNN pada URL
 ARTICLE_ID_PATTERN = re.compile(r"/\d{12,}-\d+-\d+/")
+# 4 digit pertama dari ID artikel adalah tahun terbit.
+ARTICLE_YEAR_PATTERN = re.compile(r"/(\d{4})\d{8,}-\d+-\d+/")
 
+INDONESIAN_MONTHS = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "mei": 5, "jun": 6,
+    "jul": 7, "agu": 8, "sep": 9, "okt": 10, "nov": 11, "des": 12,
+}
+
+def extract_year_from_url(url: str) -> Optional[int]:
+    """Ambil tahun dari ID artikel di URL"""
+    match = ARTICLE_YEAR_PATTERN.search(url)
+    return int(match.group(1)) if match else None
+
+def parse_cnn_date(text: str) -> Optional[date]:
+    """Parse tanggal format CNN, mis. 'Rabu, 02 Sep 2026 11:15 WIB' -> date."""
+    match = re.search(r"(\d{1,2})\s+(\w+)\s+(\d{4})", text)
+    if not match:
+        return None
+    day, month_name, year = match.groups()
+    month = INDONESIAN_MONTHS.get(month_name.lower()[:3])
+    if not month:
+        return None
+    try:
+        return date(int(year), month, int(day))
+    except ValueError:
+        return None
+
+def is_year_within_range(year: Optional[int]) -> bool:
+    """True bila tahun tidak diketahui atau berada dalam rentang START_DATE..END_DATE."""
+    if year is None:
+        return True
+    if START_DATE and year < date.fromisoformat(START_DATE).year:
+        return False
+    if END_DATE and year > date.fromisoformat(END_DATE).year:
+        return False
+    return True
 
 def build_search_config() -> CrawlerRunConfig:
-    """Konfigurasi crawl untuk halaman pencarian.
-    Menunggu tautan artikel benar-benar muncul (bukan skeleton loader).
+    """Konfigurasi crawl untuk halaman pencarian. Menunggu tautan artikel benar-benar muncul .
     """
     return CrawlerRunConfig(
         wait_for=(
@@ -49,8 +133,33 @@ def build_search_config() -> CrawlerRunConfig:
         page_timeout=PAGE_TIMEOUT,
     )
 
-def extract_article_urls(html: str, limit: int) -> list[str]:
-    """Ambil URL artikel dari halaman hasil pencarian CNN."""
+ARTICLE_CONFIG = CrawlerRunConfig(page_timeout=PAGE_TIMEOUT)
+
+async def fetch_with_retry(
+    crawler: AsyncWebCrawler, url: str, config: CrawlerRunConfig
+):
+    """Jalankan crawler.arun() dengan retry + backoff eksponensial.
+    Menangani baik result.success == False maupun exception yang
+    dilempar crawl4ai sendiri saat CNN mendeteksi trafik tidak wajar.
+    """
+    for attempt in range(1, MAX_FETCH_ATTEMPTS + 1):
+        try:
+            result = await crawler.arun(url=url, config=config)
+            if result.success:
+                return result
+            print(f"      [!] Gagal (percobaan {attempt}): {result.error_message}")
+        except Exception as exc:  # crawl4ai kadang raise,
+            print(f"      [!] Error (percobaan {attempt}): {type(exc).__name__}: {exc}")
+
+        if attempt < MAX_FETCH_ATTEMPTS:
+            backoff = RETRY_BASE_DELAY * (2 ** (attempt - 1))
+            print(f"      Menunggu {backoff:.0f}s sebelum mencoba lagi...")
+            await asyncio.sleep(backoff)
+
+    return None
+
+def extract_article_urls(html: str) -> list[str]:
+    """Ambil semua URL artikel dari satu halaman hasil pencarian CNN."""
     soup = BeautifulSoup(html, "html.parser")
     article_urls: list[str] = []
 
@@ -62,53 +171,40 @@ def extract_article_urls(html: str, limit: int) -> list[str]:
         article_url = urljoin(BASE_URL, href).split("#", maxsplit=1)[0]
         parsed_url = urlparse(article_url)
 
-        # Hanya domain CNN dan hanya tautan yang berpola ID artikel.
         if "cnnindonesia.com" not in parsed_url.netloc:
             continue
         if not ARTICLE_ID_PATTERN.search(article_url):
             continue
-        # Lewati galeri foto/video jika tidak diinginkan (opsional): biarkan semua rubrik ikut untuk sekarang.
         if article_url not in article_urls:
             article_urls.append(article_url)
-        if len(article_urls) >= limit:
-            break
 
     return article_urls
-
 
 def extract_article_data(html: str, url: str) -> dict:
     """Ekstrak judul, tanggal, dan isi dari satu halaman artikel."""
     soup = BeautifulSoup(html, "html.parser")
 
-    # Judul: heading utama, fallback ke <title> halaman.
     heading = soup.select_one("h1")
     title = heading.get_text(strip=True) if heading else ""
     if not title:
         title_tag = soup.select_one("title")
         title = title_tag.get_text(strip=True) if title_tag else url
 
-    # Tanggal terbit: elemen kecil abu-abu di bawah judul.
     date_el = soup.select_one(".text-cnn_grey.text-sm") or soup.select_one(
         "[class*=date]"
     )
     published = date_el.get_text(strip=True) if date_el else ""
 
-    # Isi artikel: kontainer .detail-text. Buang elemen pengganggu.
     body_el = soup.select_one(".detail-text")
     content = ""
     if body_el:
-        # Hapus skrip, iklan, dan kotak "baca juga" / artikel terkait.
         for junk in body_el.select(
             "script, style, .para_caption, .ads, "
             "[class*=baca], [class*=linksisip], [class*=read], table"
         ):
             junk.decompose()
-        # Gabungkan paragraf menjadi teks bersih.
-        paragraphs = [
-            p.get_text(" ", strip=True) for p in body_el.select("p")
-        ]
+        paragraphs = [p.get_text(" ", strip=True) for p in body_el.select("p")]
         content = "\n\n".join(par for par in paragraphs if par)
-        # Fallback bila tidak ada tag <p>.
         if not content:
             content = body_el.get_text("\n", strip=True)
 
@@ -121,70 +217,149 @@ def extract_article_data(html: str, url: str) -> dict:
     }
 
 async def collect_urls_for_keyword(
-    crawler: AsyncWebCrawler, keyword: str, limit: int
+    crawler: AsyncWebCrawler, query: str
 ) -> list[str]:
-    """Jalankan pencarian untuk satu kata kunci dan kembalikan URL artikel."""
-    search_url = SEARCH_URL.format(query=quote_plus(keyword))
-    print(f"\n=== Kata kunci: '{keyword}' ===")
-    print(f"    Pencarian: {search_url}")
+    """Telusuri semua halaman pencarian untuk satu kata kunci. Berhenti begitu satu halaman tidak membawa URL baru, atau setelah MAX_PAGES_PER_KEYWORD halaman (jaring pengaman).
+    """
+    print(f"\n=== Kata kunci: '{query}' ===")
+    all_urls: list[str] = []
+    seen_in_keyword: set[str] = set()
 
-    result = await crawler.arun(url=search_url, config=build_search_config())
-    if not result.success:
-        print(f"    GAGAL memuat pencarian: {result.error_message}")
-        return []
+    for page in range(1, MAX_PAGES_PER_KEYWORD + 1):
+        search_url = SEARCH_URL_TEMPLATE.format(query=quote_plus(query), page=page)
+        result = await fetch_with_retry(crawler, search_url, build_search_config())
 
-    urls = extract_article_urls(result.html, limit)
-    print(f"    Ditemukan {len(urls)} URL artikel.")
-    return urls
+        if result is None:
+            print(f"    Halaman {page}: gagal total setelah retry, hentikan paginasi.")
+            break
 
-async def main() -> None:
-    all_articles: list[dict] = []
-    seen_urls: set[str] = set()
+        page_urls = extract_article_urls(result.html)
+        new_urls = [u for u in page_urls if u not in seen_in_keyword]
 
-    async with AsyncWebCrawler() as crawler:
-        # 1. Kumpulkan URL artikel dari tiap kata kunci.
-        keyword_to_urls: dict[str, list[str]] = {}
-        for keyword in KEYWORDS:
-            urls = await collect_urls_for_keyword(
-                crawler, keyword, ARTICLE_LIMIT_PER_KEYWORD
-            )
-            keyword_to_urls[keyword] = urls
-            await asyncio.sleep(REQUEST_DELAY)
+        if not new_urls:
+            print(f"    Halaman {page}: tidak ada URL baru, paginasi selesai.")
+            break
 
-        # 2. Crawl tiap artikel (dedup lintas kata kunci).
-        article_config = CrawlerRunConfig(page_timeout=PAGE_TIMEOUT)
-        for keyword, urls in keyword_to_urls.items():
-            for url in urls:
-                if url in seen_urls:
-                    continue
-                seen_urls.add(url)
+        seen_in_keyword.update(new_urls)
+        all_urls.extend(new_urls)
+        print(f"    Halaman {page}: +{len(new_urls)} URL baru (total {len(all_urls)}).")
+        await asyncio.sleep(REQUEST_DELAY)
 
-                result = await crawler.arun(url=url, config=article_config)
-                if not result.success:
-                    print(f"    [x] GAGAL: {url} ({result.error_message})")
-                    await asyncio.sleep(REQUEST_DELAY)
-                    continue
+    return all_urls
 
-                data = extract_article_data(result.html, url)
-                data["kata_kunci"] = keyword
-                data["urutan"] = len(all_articles) + 1
-                all_articles.append(data)
-                print(f"    [{len(all_articles)}] OK: {data['judul'][:70]}")
-                await asyncio.sleep(REQUEST_DELAY)
+def load_seen_urls() -> set[str]:
+    """Baca cache JSONL yang sudah ada agar bisa resume tanpa duplikat."""
+    seen: set[str] = set()
+    if not CACHE_FILE.exists():
+        return seen
 
-    # 3. Simpan hasil ke JSON.
+    with open(CACHE_FILE, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                record = json.loads(line)
+                seen.add(record["url"])
+            except (json.JSONDecodeError, KeyError):
+                continue
+
+    print(f"Ditemukan cache: {len(seen)} artikel sudah pernah di-scrape sebelumnya.")
+    return seen
+
+def append_to_cache(article: dict) -> None:
+    """Tambahkan satu artikel ke cache JSONL."""
+    with open(CACHE_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(article, ensure_ascii=False) + "\n")
+        f.flush()
+
+def export_cache_to_final_files() -> int:
+    """Ubah cache JSONL menjadi berkas JSON array + CSV akhir."""
+    if not CACHE_FILE.exists():
+        print("Tidak ada cache untuk diekspor.")
+        return 0
+
+    records = []
+    with open(CACHE_FILE, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                records.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+
     output = {
         "sumber": BASE_URL,
         "kata_kunci": KEYWORDS,
-        "batas_per_kata_kunci": ARTICLE_LIMIT_PER_KEYWORD,
+        "batas_halaman_per_kata_kunci": MAX_PAGES_PER_KEYWORD,
         "diambil_pada": datetime.now(timezone.utc).isoformat(),
-        "jumlah_artikel": len(all_articles),
-        "artikel": all_articles,
+        "jumlah_artikel": len(records),
+        "artikel": records,
     }
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as output_file:
-        json.dump(output, output_file, ensure_ascii=False, indent=2)
+    with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"\nSelesai. {len(all_articles)} artikel disimpan ke: {OUTPUT_FILE}")
+    headers = ["url", "judul", "tanggal", "kata_kunci", "target", "isi"]
+    with open(OUTPUT_CSV, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=headers, quoting=csv.QUOTE_ALL)
+        writer.writeheader()
+        for record in records:
+            writer.writerow({key: record.get(key, "") for key in headers})
+
+    print(f"\nEkspor selesai: {len(records)} artikel -> {OUTPUT_JSON} dan {OUTPUT_CSV}")
+    return len(records)
+
+async def main() -> None:
+    seen_urls = load_seen_urls()
+
+    async with AsyncWebCrawler() as crawler:
+        for query, target in KEYWORDS:
+            urls = await collect_urls_for_keyword(crawler, query)
+
+            new_urls = [u for u in urls if u not in seen_urls]
+
+            # Buang URL di luar rentang tahun berdasarkan ID artikel, sebelum halamannya dibuka.
+            candidate_urls = []
+            skipped_out_of_range = 0
+            for url in new_urls:
+                if not is_year_within_range(extract_year_from_url(url)):
+                    skipped_out_of_range += 1
+                    seen_urls.add(url)
+                    continue
+                candidate_urls.append(url)
+
+            print(
+                f"    -> {len(urls)} URL ditemukan, {len(candidate_urls)} baru "
+                f"untuk diambil ({skipped_out_of_range} dilewati di luar rentang tahun, "
+                f"sisanya sudah ada di cache)."
+            )
+
+            for url in candidate_urls:
+                result = await fetch_with_retry(crawler, url, ARTICLE_CONFIG)
+                seen_urls.add(url)  # tandai sudah dicoba, sukses ataupun gagal
+
+                if result is None:
+                    print(f"    [x] Lewati (gagal total): {url}")
+                    continue
+
+                data = extract_article_data(result.html, url)
+
+                # Cek ulang dengan tanggal asli dari halaman.
+                real_year = parse_cnn_date(data["tanggal"])
+                real_year = real_year.year if real_year else extract_year_from_url(url)
+                if not is_year_within_range(real_year):
+                    print(f"    [-] Lewati (di luar rentang tahun): {data['judul'][:70]}")
+                    continue
+
+                data["kata_kunci"] = query
+                data["target"] = target
+                append_to_cache(data)
+                print(f"    [v] Tersimpan: {data['judul'][:70]}")
+                await asyncio.sleep(REQUEST_DELAY)
+
+    export_cache_to_final_files()
 
 if __name__ == "__main__":
     asyncio.run(main())
