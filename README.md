@@ -1,6 +1,6 @@
 # Proyek Capstone Kelas RAP
 
-**Mata Kuliah:** PACS262525 — Proyek Capstone Kelas RAP
+**Mata Kuliah:** PACS262525 — Proyek Capstone Kelas RAP  
 **Dosen:** Rifki Afina Putri, S.T., M.S., Ph.D.
 
 ## Team
