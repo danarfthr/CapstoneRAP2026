@@ -1,0 +1,459 @@
+[1;36m[[0m[36mINIT[0m[1;36m][0m[36m...[0m[36m. → Crawl4AI [0m[1;36m0.9[0m[36m.[0m[1;36m3[0m[36m [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m77s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m06s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m03s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m88s [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m63s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m04s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2026[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m71s [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2026[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2026[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2026[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2026[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2026[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2026[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m36s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;33m0.[0m[33m06[0m[32ms [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m45s [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m28s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;33m0.[0m[33m05[0m[32ms [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2025[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m37s [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2025[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2025[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2025[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2025[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2025[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2025[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m77s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m06s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m86s [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m32s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m06s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2024[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m41s [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2024[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2024[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2024[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2024[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2024[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2024[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+sumber: kompas | 55 query | tahun 2011-2026
+
+=== [PLTN] PLTN ===
+    [ok] 2026 p1: 20 item
+    [ok] 2026 p2: 1 item
+    [retry 1/3] Unexpected error in _crawl_web at line 1024 in _crawl_web (../../.venv/lib/python3.13/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Wait condition failed: Timeout after 20000ms waiting for selector '.articleItem'
+
+Code context:
+1019                       timeout = config.wait_for_timeout if config.wait_for_timeout is not None else config.page_timeout
+1020                       await self.smart_wait(
+1021                           page, config.wait_for, timeout=timeout
+1022                       )
+1023                   except Exception as e:
+1024 →                     raise RuntimeError(f"Wait condition failed: {str(e)}")
+1025   
+1026               # Handle virtual scroll if configured (after wait_for so container exists)
+1027               if config.virtual_scroll_config:
+1028                   await self._handle_virtual_scroll(page, config.virtual_scroll_config)
+1029    - tunggu 5s
+    [retry 2/3] Unexpected error in _crawl_web at line 1024 in _crawl_web (../../.venv/lib/python3.13/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Wait condition failed: Timeout after 20000ms waiting for selector '.articleItem'
+
+Code context:
+1019                       timeout = config.wait_for_timeout if config.wait_for_timeout is not None else config.page_timeout
+1020                       await self.smart_wait(
+1021                           page, config.wait_for, timeout=timeout
+1022                       )
+1023                   except Exception as e:
+1024 →                     raise RuntimeError(f"Wait condition failed: {str(e)}")
+1025   
+1026               # Handle virtual scroll if configured (after wait_for so container exists)
+1027               if config.virtual_scroll_config:
+1028                   await self._handle_virtual_scroll(page, config.virtual_scroll_config)
+1029    - tunggu 10s
+    [gagal] 2026 p3 - Unexpected error in _crawl_web at line 1024 in _crawl_web (../../.venv/lib/python3.13/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Wait condition failed: Timeout after 20000ms waiting for selector '.articleItem'
+
+Code context:
+1019                       timeout = config.wait_for_timeout if config.wait_for_timeout is not None else config.page_timeout
+1020                       await self.smart_wait(
+1021                           page, config.wait_for, timeout=timeout
+1022                       )
+1023                   except Exception as e:
+1024 →                     raise RuntimeError(f"Wait condition failed: {str(e)}")
+1025   
+1026               # Handle virtual scroll if configured (after wait_for so container exists)
+1027               if config.virtual_scroll_config:
+1028                   await self._handle_virtual_scroll(page, config.virtual_scroll_config)
+1029   
+    [ok] 2025 p1: 20 item
+    [ok] 2025 p2: 20 item
+    [retry 1/3] Unexpected error in _crawl_web at line 1024 in _crawl_web (../../.venv/lib/python3.13/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Wait condition failed: Timeout after 20000ms waiting for selector '.articleItem'
+
+Code context:
+1019                       timeout = config.wait_for_timeout if config.wait_for_timeout is not None else config.page_timeout
+1020                       await self.smart_wait(
+1021                           page, config.wait_for, timeout=timeout
+1022                       )
+1023                   except Exception as e:
+1024 →                     raise RuntimeError(f"Wait condition failed: {str(e)}")
+1025   
+1026               # Handle virtual scroll if configured (after wait_for so container exists)
+1027               if config.virtual_scroll_config:
+1028                   await self._handle_virtual_scroll(page, config.virtual_scroll_config)
+1029    - tunggu 5s
+    [retry 2/3] Unexpected error in _crawl_web at line 1024 in _crawl_web (../../.venv/lib/python3.13/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Wait condition failed: Timeout after 20000ms waiting for selector '.articleItem'
+
+Code context:
+1019                       timeout = config.wait_for_timeout if config.wait_for_timeout is not None else config.page_timeout
+1020                       await self.smart_wait(
+1021                           page, config.wait_for, timeout=timeout
+1022                       )
+1023                   except Exception as e:
+1024 →                     raise RuntimeError(f"Wait condition failed: {str(e)}")
+1025   
+1026               # Handle virtual scroll if configured (after wait_for so container exists)
+1027               if config.virtual_scroll_config:
+1028                   await self._handle_virtual_scroll(page, config.virtual_scroll_config)
+1029    - tunggu 10s
+    [gagal] 2025 p3 - Unexpected error in _crawl_web at line 1024 in _crawl_web (../../.venv/lib/python3.13/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Wait condition failed: Timeout after 20000ms waiting for selector '.articleItem'
+
+Code context:
+1019                       timeout = config.wait_for_timeout if config.wait_for_timeout is not None else config.page_timeout
+1020                       await self.smart_wait(
+1021                           page, config.wait_for, timeout=timeout
+1022                       )
+1023                   except Exception as e:
+1024 →                     raise RuntimeError(f"Wait condition failed: {str(e)}")
+1025   
+1026               # Handle virtual scroll if configured (after wait_for so container exists)
+1027               if config.virtual_scroll_config:
+1028                   await self._handle_virtual_scroll(page, config.virtual_scroll_config)
+1029   
+    [ok] 2024 p1: 20 item
+    [ok] 2024 p2: 15 item
+    [retry 1/3] Unexpected error in _crawl_web at line 1024 in _crawl_web (../../.venv/lib/python3.13/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Wait condition failed: Timeout after 20000ms waiting for selector '.articleItem'
+
+Code context:
+1019                       timeout = config.wait_for_timeout if config.wait_for_timeout is not None else config.page_timeout
+1020                       await self.smart_wait(
+1021                           page, config.wait_for, timeout=timeout
+1022                       )
+1023                   except Exception as e:
+1024 →                     raise RuntimeError(f"Wait condition failed: {str(e)}")
+1025   
+1026               # Handle virtual scroll if configured (after wait_for so container exists)
+1027               if config.virtual_scroll_config:
+1028                   await self._handle_virtual_scroll(page, config.virtual_scroll_config)
+1029    - tunggu 5s
+    [retry 2/3] Unexpected error in _crawl_web at line 1024 in _crawl_web (../../.venv/lib/python3.13/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Wait condition failed: Timeout after 20000ms waiting for selector '.articleItem'
+
+Code context:
+1019                       timeout = config.wait_for_timeout if config.wait_for_timeout is not None else config.page_timeout
+1020                       await self.smart_wait(
+1021                           page, config.wait_for, timeout=timeout
+1022                       )
+1023                   except Exception as e:
+1024 →                     raise RuntimeError(f"Wait condition failed: {str(e)}")
+1025   
+1026               # Handle virtual scroll if configured (after wait_for so container exists)
+1027               if config.virtual_scroll_config:
+1028                   await self._handle_virtual_scroll(page, config.virtual_scroll_config)
+1029    - tunggu 10s
+    [gagal] 2024 p3 - Unexpected error in _crawl_web at line 1024 in _crawl_web (../../.venv/lib/python3.13/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Wait condition failed: Timeout after 20000ms waiting for selector '.articleItem'
+
+Code context:
+1019                       timeout = config.wait_for_timeout if config.wait_for_timeout is not None else config.page_timeout
+1020                       await self.smart_wait(
+1021                           page, config.wait_for, timeout=timeout
+1022                       )
+1023                   except Exception as e:
+1024 →                     raise RuntimeError(f"Wait condition failed: {str(e)}")
+1025   
+1026               # Handle virtual scroll if configured (after wait_for so container exists)
+1027               if config.virtual_scroll_config:
+1028                   await self._handle_virtual_scroll(page, config.virtual_scroll_config)
+1029   [1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m24s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m06s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m03s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m34s [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m09s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m04s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m17s [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m3[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m70s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m3[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m06s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m3[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m3[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m79s [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m4[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m16s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m4[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;33m0.[0m[33m05[0m[32ms [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m4[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m4[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2023[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m24s [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2023[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2023[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2023[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2023[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2023[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2023[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m29s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m05s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m38s [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m40s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m06s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m2[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m49s [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m3[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m31s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m3[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m06s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m3[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m3[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m40s [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m4[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m04s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m4[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m05s [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m4[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m4[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2022[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m2.[0m[32m13s [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2022[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2022[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2022[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2022[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;31m[[0m[31mANTIBOT[0m[1;31m][0m[31m. ℹ [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2022[0m[4;31m-12-31[0m[31m  | Error: Proxy direct failed: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m[31m [0m
+[1;31m[[0m[31mERROR[0m[1;31m][0m[31m...[0m[31m × [0m[4;31mhttps://search.kompas.c...-01&[0m[4;31mend_date[0m[4;31m=[0m[4;31m2022[0m[4;31m-12-31[0m[31m  | Error: Unexpected error in _crawl_web at line [0m[1;31m1024[0m[31m in _crawl_web [0m
+[1;31m([0m[31m..[0m[31m/../.venv/lib/python3.13/site-packages/crawl4ai/[0m[31masync_crawler_strategy.py[0m[1;31m)[0m[31m:[0m
+[31mError: Wait condition failed: Timeout after 20000ms waiting for selector [0m[31m'.articleItem'[0m
+
+[31mCode context:[0m
+[1;31m1019[0m[31m                       timeout = config.wait_for_timeout if config.wait_for_timeout is not [0m[3;31mNone[0m[31m else config.page_timeout[0m
+[1;31m1020[0m[31m                       await [0m[1;31mself.smart_wait[0m[1;31m([0m
+[1;31m1021[0m[31m                           page, config.wait_for, [0m[31mtimeout[0m[31m=[0m[31mtimeout[0m
+[1;31m1022[0m[31m                       [0m[1;31m)[0m
+[1;31m1023[0m[31m                   except Exception as e:[0m
+[1;31m1024[0m[31m →                     raise [0m[1;31mRuntimeError[0m[1;31m([0m[31mf"Wait condition failed: [0m[1;31m{[0m[1;31mstr[0m[1;31m([0m[31me[0m[1;31m)[0m[1;31m}[0m[31m"[0m[1;31m)[0m
+[1;31m1025[0m[31m   [0m
+[1;31m1026[0m[31m               # Handle virtual scroll if configured [0m[1;31m([0m[31mafter wait_for so container exists[0m[1;31m)[0m
+[1;31m1027[0m[31m               if config.virtual_scroll_config:[0m
+[1;31m1028[0m[31m                   await [0m[1;31mself._handle_virtual_scroll[0m[1;31m([0m[31mpage, config.virtual_scroll_config[0m[1;31m)[0m
+[1;31m1029[0m[31m    [0m
+[1;32m[[0m[32mFETCH[0m[1;32m][0m[32m...[0m[32m ↓ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2021[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2021[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m3.[0m[32m23s [0m
+[1;32m[[0m[32mSCRAPE[0m[1;32m][0m[32m.. ◆ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2021[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2021[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;33m0.[0m[33m06[0m[32ms [0m
+[1;32m[[0m[32mEXTRACT[0m[1;32m][0m[32m. ■ [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2021[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2021[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m0.[0m[32m02s [0m
+[1;32m[[0m[32mCOMPLETE[0m[1;32m][0m[32m ● [0m[4;32mhttps://search.kompas.com/search?[0m[4;32mq[0m[4;32m=[0m[4;32mPLTN[0m[4;32m&[0m[4;32msite_id[0m[4;32m=[0m[4;32mall[0m[4;32m&[0m[4;32mpage[0m[4;32m=[0m[4;32m1[0m[4;32m&[0m[4;32mstart_date[0m[4;32m=[0m[4;32m2021[0m[4;32m-01-01&[0m[4;32mend_date[0m[4;32m=[0m[4;32m2021[0m[4;32m-12-31[0m[32m | [0m[32m✓[0m[32m | ⏱: [0m[1;32m3.[0m[32m32s [0m
