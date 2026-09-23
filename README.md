@@ -19,7 +19,7 @@
 
 ## Tim
 
-- **Adzraha Auryn Alius** — 24/533582/PA/22594
+- **Adzrha Auryn Alius** — 24/533582/PA/22594
 - **Gilbert Nathaniel** — 24/533877/PA/22623
 - **Danar Fathurahman** — 24/538200/PA/22828
 - **Jessy Marcia Anabel** — 24/538431/PA/22846
