@@ -1,21 +1,17 @@
 import logging
+import sys
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import List, Optional
 
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from query_config import KEYWORDS, START_YEAR, END_YEAR
+
 @dataclass
 class ScraperConfig:
     # --- 1. Search Keywords ---
-    # Matches crawler/detik keyword list so both datasets cover the same topics.
-    target_keywords: List[str] = field(default_factory=lambda: [
-        "PLTN",
-        "PLTU",
-        "Pembangkit Listrik Tenaga Nuklir",
-        "Pembangkit Listrik Tenaga Uap",
-        "Energi Nuklir",
-        "Reaktor Nuklir",
-        "Pembangkit Listrik Batubara"
-    ])
+    # Sourced from crawler/query_config.py (shared across cnnindonesia/detik/kompas/youtubecomment).
+    target_keywords: List[str] = field(default_factory=lambda: [kw for kw, _ in KEYWORDS])
 
     # --- 2. Search Limits ---
     max_videos_per_keyword: int = 10   # Videos taken from yt-dlp results per keyword

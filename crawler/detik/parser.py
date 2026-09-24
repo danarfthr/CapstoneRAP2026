@@ -2,6 +2,7 @@ import re
 from typing import List, Dict, Optional
 from bs4 import BeautifulSoup
 from config import config, logger
+from query_config import START_YEAR, END_YEAR
 
 def normalize_spaces(text: str) -> str:
     """Removes extra whitespaces and newlines."""
@@ -39,6 +40,21 @@ def contains_keywords(text: str) -> bool:
             return True
     return False
 
+def extract_year(date_str: str) -> Optional[int]:
+    """Best-effort year extraction from Detik's date string (ISO meta value or
+    the visual 'Selasa, 23 Sep 2026 14:30 WIB' fallback text)."""
+    if not date_str:
+        return None
+    match = re.search(r'\b(20\d{2})\b', date_str)
+    return int(match.group(1)) if match else None
+
+def is_year_within_range(year: Optional[int]) -> bool:
+    """True bila tahun tidak diketahui (tidak bisa dipastikan) atau berada
+    dalam rentang START_YEAR..END_YEAR dari query_config.py."""
+    if year is None:
+        return True
+    return START_YEAR <= year <= END_YEAR
+
 def extract_article_date(soup: BeautifulSoup) -> str:
     """Attempts to extract the publication date from Detik's metadata."""
     # Detik usually stores the date in meta tags or specific div classes
@@ -53,7 +69,7 @@ def extract_article_date(soup: BeautifulSoup) -> str:
         
     return ""
 
-def parse_article_html(html: str, url: str) -> Optional[Dict]:
+def parse_article_html(html: str, url: str, keyword: str, target: str) -> Optional[Dict]:
     """
     Parses the raw HTML of a Detik article.
     Returns a dictionary of article data IF it matches the target keywords.
@@ -117,13 +133,19 @@ def parse_article_html(html: str, url: str) -> Optional[Dict]:
     # 5. Extract Date
     published_date = extract_article_date(soup)
 
+    # 6. Filter check: is the article within the target year range?
+    if not is_year_within_range(extract_year(published_date)):
+        return None # Discard article outside START_YEAR..END_YEAR
+
     # Return structured data
     return {
         "url": url,
         "title": title,
         "date": published_date,
         "body": full_body,
-        "tags": tags
+        "tags": tags,
+        "keyword": keyword,
+        "target": target,
     }
 
 def parse_search_results(html: str) -> List[str]:

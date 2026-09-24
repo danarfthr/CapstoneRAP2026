@@ -73,8 +73,8 @@ Target awal proposal: **10 video YouTube terpilih** (komentar) + **50 artikel be
 | Sumber        | Jenis            | Lokasi Kode                                          | Status                                           |
 | ------------- | ---------------- | ---------------------------------------------------- | ------------------------------------------------ |
 | CNN Indonesia | Artikel berita   | [`crawler/cnnindonesia/`](crawler/cnnindonesia/)     | Aktif, lihat [Status Saat Ini](#status-saat-ini) |
-| Detik         | Artikel berita   | [`crawler/detik/`](crawler/detik/)                   | Siap jalan, belum dieksekusi                     |
-| Kompas        | Artikel berita   | [`crawler/kompas/`](crawler/kompas/)                 | Belum diimplementasikan                          |
+| Detik         | Artikel berita   | [`crawler/detik/`](crawler/detik/)                   | Siap jalan                                       |
+| Kompas        | Artikel berita   | [`crawler/kompas/`](crawler/kompas/)                 | Aktif, lihat [Status Saat Ini](#status-saat-ini) |
 | YouTube       | Video + komentar | [`crawler/youtubecomment/`](crawler/youtubecomment/) | Aktif, lihat [Status Saat Ini](#status-saat-ini) |
 
 Semua sumber menggunakan kata kunci seputar PLTN, PLTU, energi nuklir, dan transisi energi Indonesia agar cakupan topik konsisten antar sumber.
@@ -104,26 +104,26 @@ Pelaksanaan proyek dibagi menjadi dua subtim berdasarkan objek riset, masing-mas
 CapstoneRAP2026/
 ├── README.md
 └── crawler/
-    ├── cnnindonesia/   # Scraper artikel CNN Indonesia (2 implementasi)
-    ├── detik/          # Scraper artikel Detik (production-grade)
-    ├── kompas/         # Placeholder, belum diimplementasikan
-    └── youtubecomment/ # Scraper video + komentar YouTube
+    ├── query_config.py   # Shared config: kata kunci PLTN/PLTU/UMUM + rentang tahun (dipakai 4 crawler)
+    ├── merge_articles.py # Gabungkan artikel CNN+Detik+Kompas -> data/articles_merged.json/.csv
+    ├── cnnindonesia/     # Scraper artikel CNN Indonesia
+    ├── detik/            # Scraper artikel Detik (production-grade)
+    ├── kompas/           # Scraper artikel Kompas (2 tahap: cari URL, lalu ambil isi)
+    └── youtubecomment/   # Scraper video + komentar YouTube
 ```
+
+Kata kunci pencarian & rentang tahun (`START_YEAR`/`END_YEAR`) untuk keempat crawler didefinisikan satu kali di [`crawler/query_config.py`](crawler/query_config.py), supaya keempatnya konsisten menyasar topik PLTN/PLTU/UMUM yang sama dan tidak lagi terpisah-pisah.
+
+Artikel berita dari CNN, Detik, dan Kompas bisa digabung jadi satu file dengan skema kolom seragam (`source`, `url`, `title`, `date`, `keyword`, `target`, `author`, `tags`, `content`) lewat [`crawler/merge_articles.py`](crawler/merge_articles.py) — baca langsung dari cache tiap sumber jadi aman dijalankan ulang kapan saja, termasuk saat crawler masih jalan. YouTube tidak ikut digabung karena unit datanya beda (komentar per video, bukan artikel); outputnya tetap terpisah di `crawler/youtubecomment/data/`.
 
 ### [`crawler/cnnindonesia/`](crawler/cnnindonesia/)
 
-Berisi **dua implementasi berbeda** yang saat ini hidup berdampingan:
-
-1. **[`scrape_cnn.py`](crawler/cnnindonesia/scrape_cnn.py)** — scraper satu file berbasis pencarian CNN (`?query=...&page=N`):
-   - Paginasi otomatis sampai hasil habis (dibatasi `MAX_PAGES_PER_KEYWORD` sebagai jaring pengaman).
-   - **Resumable**: cache JSONL ([`cnn_energy_cache.jsonl`](crawler/cnnindonesia/cnn_energy_cache.jsonl)) menyimpan tiap artikel begitu berhasil, sehingga proses bisa dihentikan dan dilanjutkan kapan saja tanpa scraping ulang.
-   - Retry + backoff eksponensial untuk kegagalan jaringan/anti-bot.
-   - **Filter rentang tahun** (`START_DATE` / `END_DATE` di bagian konfigurasi) — artikel di luar rentang dilewati sebelum halamannya dibuka (tahun ditebak dari ID artikel di URL), lalu dicek ulang dengan tanggal asli.
-   - Output akhir: [`hasil_scraping_cnn_attempt2.json`](crawler/cnnindonesia/hasil_scraping_cnn_attempt2.json) & `.csv`, tiap artikel berisi `url`, `judul`, `tanggal`, `isi`, `kata_kunci`, `target` (label `PLTN`/`PLTU`/`UMUM` untuk anotasi sentimen).
-
-2. **[`discovery.py`](crawler/cnnindonesia/discovery.py) + [`crawler.py`](crawler/cnnindonesia/crawler.py)** — pipeline dua tahap berbasis markdown:
-   - `discovery.py` mencari URL artikel per kata kunci lewat hasil pencarian CNN (markdown, bukan HTML), menyimpan daftar URL unik ke [`data/discovered_urls.json`](crawler/cnnindonesia/data/discovered_urls.json).
-   - `crawler.py` membuka tiap URL yang ditemukan, membersihkan markdown (buang blok "Lihat Juga", iklan, elemen UI) dengan `PruningContentFilter`, lalu menyimpan ke [`data/articles.json`](crawler/cnnindonesia/data/articles.json).
+**[`scrape_cnn.py`](crawler/cnnindonesia/scrape_cnn.py)** — scraper satu file berbasis pencarian CNN (`?query=...&page=N`):
+- Paginasi otomatis sampai hasil habis (dibatasi `MAX_PAGES_PER_KEYWORD` sebagai jaring pengaman).
+- **Resumable**: cache JSONL ([`cnn_energy_cache.jsonl`](crawler/cnnindonesia/cnn_energy_cache.jsonl)) menyimpan tiap artikel begitu berhasil, sehingga proses bisa dihentikan dan dilanjutkan kapan saja tanpa scraping ulang.
+- Retry + backoff eksponensial untuk kegagalan jaringan/anti-bot.
+- **Filter rentang tahun** (`START_DATE`/`END_DATE`, dari `crawler/query_config.py`) — artikel di luar rentang dilewati sebelum halamannya dibuka (tahun ditebak dari ID artikel di URL), lalu dicek ulang dengan tanggal asli.
+- Output akhir: [`hasil_scraping_cnn_attempt2.json`](crawler/cnnindonesia/hasil_scraping_cnn_attempt2.json) & `.csv`, tiap artikel berisi `url`, `judul`, `tanggal`, `isi`, `kata_kunci`, `target` (label `PLTN`/`PLTU`/`UMUM` untuk anotasi sentimen).
 
 ### [`crawler/detik/`](crawler/detik/)
 
@@ -131,23 +131,29 @@ Scraper modular production-grade dengan pemisahan tanggung jawab per file:
 
 | File                                       | Fungsi                                                                                                                     |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| [`config.py`](crawler/detik/config.py)     | Konfigurasi terpusat: kata kunci, rentang tahun (`start_date`/`end_date`), limit halaman, user-agent pool, path output     |
+| [`config.py`](crawler/detik/config.py)     | Konfigurasi terpusat: kata kunci & rentang tahun (dari `crawler/query_config.py`), limit halaman, user-agent pool, path output |
 | [`crawler.py`](crawler/detik/crawler.py)   | Fetcher async (aiohttp) dengan rotasi User-Agent, retry, dan cooldown otomatis 5 menit saat terdeteksi anti-bot/Cloudflare |
-| [`parser.py`](crawler/detik/parser.py)     | Ekstraksi judul/tanggal/isi/tag, filter artikel berdasarkan kemunculan kata kunci (regex word-boundary)                    |
+| [`parser.py`](crawler/detik/parser.py)     | Ekstraksi judul/tanggal/isi/tag, filter artikel berdasarkan kemunculan kata kunci (regex word-boundary) & rentang tahun    |
 | [`storage.py`](crawler/detik/storage.py)   | Cache JSONL append-only, thread-safe, resumable                                                                            |
 | [`exporter.py`](crawler/detik/exporter.py) | Konversi cache JSONL → CSV & JSON array (streaming, hemat memori)                                                          |
 | [`main.py`](crawler/detik/main.py)         | Entry point: jalankan crawler lalu ekspor otomatis                                                                         |
 
 ### [`crawler/kompas/`](crawler/kompas/)
 
-Belum ada implementasi scraper.
+Scraper dua tahap berbasis `crawl4ai`, resumable di tiap tahap:
+
+| File                                             | Fungsi                                                                                                    |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| [`config.py`](crawler/kompas/config.py)          | Selector CSS pencarian & artikel, builder URL pencarian dengan filter tanggal                              |
+| [`step1_search.py`](crawler/kompas/step1_search.py) | Kumpulkan judul + URL artikel per kata kunci per tahun (dari `crawler/query_config.py`) → `data/urls.json` |
+| [`step2_articles.py`](crawler/kompas/step2_articles.py) | Ambil isi lengkap tiap URL hasil step 1 → `data/articles.json`                                          |
 
 ### [`crawler/youtubecomment/`](crawler/youtubecomment/)
 
 | File                                                          | Fungsi                                                                                                                                                                                                                             |
 | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`config.py`](crawler/youtubecomment/config.py)               | Kata kunci pencarian (selaras dengan `crawler/detik`), limit video/komentar per kata kunci, path output                                                                                                                            |
-| [`scraper.py`](crawler/youtubecomment/scraper.py)             | `YouTubeSearcher` (via `yt-dlp`, pencarian `ytsearchN:`) untuk menemukan video, `CommentScraper` (via `youtube-comment-downloader`) untuk mengambil komentar; state per-video disimpan agar video yang sudah selesai tidak diulang |
+| [`config.py`](crawler/youtubecomment/config.py)               | Kata kunci pencarian (dari `crawler/query_config.py`), limit video/komentar per kata kunci, path output                                                                                                                            |
+| [`scraper.py`](crawler/youtubecomment/scraper.py)             | `YouTubeSearcher` (via `yt-dlp`, pencarian `ytsearchN:`) untuk menemukan video, `CommentScraper` (via `youtube-comment-downloader`) untuk mengambil komentar; video di luar rentang tahun dilewati; state per-video disimpan agar video yang sudah selesai tidak diulang |
 | [`exporter.py`](crawler/youtubecomment/exporter.py)           | Ekspor cache JSONL komentar → CSV & JSON array                                                                                                                                                                                     |
 | [`main.py`](crawler/youtubecomment/main.py)                   | Entry point pipeline lengkap                                                                                                                                                                                                       |
 | [`requirements.txt`](crawler/youtubecomment/requirements.txt) | `yt-dlp`, `youtube-comment-downloader`, `dateparser`                                                                                                                                                                               |
@@ -155,23 +161,27 @@ Belum ada implementasi scraper.
 ## Cara Menjalankan Crawler
 
 ```bash
-# CNN Indonesia (versi resumable, satu file)
+# CNN Indonesia
 cd crawler/cnnindonesia
 python scrape_cnn.py
-
-# CNN Indonesia (versi discovery + markdown)
-cd crawler/cnnindonesia
-python discovery.py   # tahap 1: kumpulkan URL
-python crawler.py     # tahap 2: scrape isi artikel
 
 # Detik
 cd crawler/detik
 python main.py
 
+# Kompas
+cd crawler/kompas
+python step1_search.py    # tahap 1: kumpulkan URL
+python step2_articles.py  # tahap 2: scrape isi artikel
+
 # YouTube (video + komentar)
 cd crawler/youtubecomment
 pip install -r requirements.txt
 python main.py
+
+# Gabungkan artikel CNN+Detik+Kompas jadi satu file (bisa dijalankan ulang kapan saja)
+cd crawler
+python merge_articles.py
 ```
 
 ## Dokumen & Tautan Penting
@@ -180,12 +190,13 @@ python main.py
 - **Timeline / Gantt Chart (Google Sheets):** https://docs.google.com/spreadsheets/d/1uUyMNYzIS8GGlzlv8sgwmwW2dDUcrbSpzC-fXN0Dld4/edit?usp=sharing
 - **Flowchart Arsitektur Sistem (Miro):** https://miro.com/app/board/uXjVHoqqU-U=/
 
-## Status Saat Ini (update 16 September 2026)
+## Status Saat Ini (update 23 September 2026)
 
-- **CNN Indonesia**: 693 artikel tersimpan (rentang tahun 2019-2026, hasil filter dari 834 baris cache setelah pembersihan duplikat & artikel di bawah 2019). Kata kunci di bidang PLTN yang dominan adalah `PLTN`, `energi nuklir`, dan `rencana pembangunan PLTN`, sedangkan kata kunci di bidang PLTU (`PLTU`, `tolak PLTU`, `emisi PLTU`, dll.) belum menghasilkan artikel yang memadai. Perlu investigasi lebih lanjut apakah karena keterbatasan mesin pencari CNN atau memang minim liputan dengan frasa tersebut.
-- **YouTube**: 8 video sudah discrape, ±4.100 komentar tersimpan di cache.
-- **Detik**: kode scraper sudah siap (fitur anti-bot & resumable cache paling lengkap di antara semua crawler), namun belum pernah dieksekusi di lingkungan ini.
-- **Kompas**: belum diimplementasikan sama sekali.
+- Kata kunci & rentang tahun crawling (2021-2026) sekarang disatukan di [`crawler/query_config.py`](crawler/query_config.py) dan dipakai keempat crawler, menggantikan daftar kata kunci yang sebelumnya berbeda-beda per sumber.
+- **CNN Indonesia**: satu implementasi (`scrape_cnn.py`) setelah menggabungkan pipeline eksperimen `discovery.py`/`crawler.py` yang sebelumnya tidak pernah benar-benar jalan. 693 artikel tersimpan dari run sebelumnya (rentang tahun 2019-2026); crawling ulang dengan rentang 2021-2026 & kata kunci baru sedang berjalan.
+- **Kompas**: dua-tahap (`step1_search.py` lalu `step2_articles.py`), sudah punya data hasil run sebelumnya (`data/urls.json`, `data/articles.json`); crawling ulang dengan rentang 2021-2026 sedang berjalan.
+- **Detik**: kode scraper siap (fitur anti-bot & resumable cache paling lengkap di antara semua crawler); filter rentang tahun (sebelumnya cuma placeholder di config) sekarang benar-benar diterapkan di `parser.py`.
+- **YouTube**: ±4.100 komentar tersimpan di cache dari run sebelumnya; sekarang video di luar rentang tahun 2021-2026 dilewati sebelum komentarnya di-scrape.
 - Tahap saat ini masih **Fase 1 (pengumpulan & pengolahan data)**, sedangkan fase seperti preprocessing, feature engineering, dan model NLP/LLM untuk sentiment analysis & stance detection belum dimulai.
 
 > Tolong untuk status selalu diupdate setiap minggu ya ges ya :)

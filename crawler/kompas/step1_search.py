@@ -2,7 +2,8 @@
 Step 1 — Kumpulkan judul + URL artikel dari halaman search.
 
 Selector & pola URL diambil dari config.py (khas per sumber).
-Daftar query diambil dari keywords.py (dipakai bareng semua sumber).
+Daftar query & rentang tahun diambil dari crawler/query_config.py (dipakai
+bareng semua sumber: cnnindonesia/detik/kompas/youtubecomment).
 
 Query dijalankan per-tahun (start_date/end_date) supaya sebaran tahun
 terjamin, bukan cuma ngandelin pagination dari hasil "semua waktu" yang
@@ -33,15 +34,15 @@ from crawl4ai import (
 )
 
 from config import SOURCE, SEARCH_SCHEMA, WAIT_FOR, search_url, valid_artikel
-from keywords import KEYWORDS, KEYWORDS_TEST
+from query_config import KEYWORDS, KEYWORDS_TEST, START_YEAR, END_YEAR
 
 # ---------------------------------------------------------------- konfigurasi
 
 MODE_TEST = False          # True = pakai KEYWORDS_TEST (5 query saja)
 MAX_PAGE_PER_TAHUN = 50     # jaring pengaman - halaman_maks (dari total hasil
                             # asli Kompas) yang beneran nyetop paginasi
-TAHUN_MIN = 2015
-TAHUN_MAX = 2026
+TAHUN_MIN = START_YEAR
+TAHUN_MAX = END_YEAR
 JEDA_ANTAR_HALAMAN = 3     # detik
 MAX_RETRY = 3
 JEDA_RETRY_AWAL = 5        # detik, dilipatgandakan tiap retry (backoff)

@@ -1,7 +1,11 @@
 import logging
+import sys
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import List, Set, Optional
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from query_config import KEYWORDS, START_DATE, END_DATE
 
 @dataclass
 class ScraperConfig:
@@ -9,23 +13,16 @@ class ScraperConfig:
     base_url: str = "https://www.detik.com/"
     # Detik's internal search endpoint (Option B Strategy)
     search_url: str = "https://www.detik.com/search/searchall"
-    
+
     # --- 2. Energy Keywords & Synonyms ---
     # The crawler will search for these terms or filter articles containing them.
-    target_keywords: List[str] = field(default_factory=lambda: [
-        "PLTN",
-        "PLTU",
-        "Pembangkit Listrik Tenaga Nuklir",
-        "Pembangkit Listrik Tenaga Uap",
-        "Energi Nuklir",
-        "Reaktor Nuklir",
-        "Pembangkit Listrik Batubara"
-    ])
+    # Sourced from crawler/query_config.py (shared across cnnindonesia/detik/kompas/youtubecomment).
+    target_keywords: List[str] = field(default_factory=lambda: [kw for kw, _ in KEYWORDS])
 
-    # --- 3. Date Range Placeholders ---
+    # --- 3. Date Range ---
     # Format: "YYYY-MM-DD". Set to None if you want to scrape all available time.
-    start_date: Optional[str] = "2015-01-01" 
-    end_date: Optional[str] = "2026-12-31"
+    start_date: Optional[str] = START_DATE
+    end_date: Optional[str] = END_DATE
 
     # --- 4. Navigation Filters (For Index Crawling fallback) ---
     # Narrowed down from 17 root sections to focus strictly on hard news and economy.

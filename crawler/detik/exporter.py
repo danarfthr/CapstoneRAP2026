@@ -29,7 +29,7 @@ def export_to_csv():
     Automatically escapes quotes and newlines in the article body.
     """
     # The keys must match the dictionary output from parser.py
-    headers = ["url", "title", "date", "tags", "body"]
+    headers = ["url", "title", "date", "keyword", "target", "tags", "body"]
     
     logger.info(f"Starting CSV export to {config.final_csv}...")
     
@@ -50,6 +50,8 @@ def export_to_csv():
                 "url": record.get("url", ""),
                 "title": record.get("title", ""),
                 "date": record.get("date", ""),
+                "keyword": record.get("keyword", ""),
+                "target": record.get("target", ""),
                 "tags": formatted_tags,
                 "body": record.get("body", "")
             })

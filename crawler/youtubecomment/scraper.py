@@ -8,6 +8,7 @@ from yt_dlp import YoutubeDL
 from youtube_comment_downloader import YoutubeCommentDownloader
 
 from config import config, logger
+from query_config import KEYWORD_TARGET_MAP, START_YEAR, END_YEAR
 
 COMMENT_FIELDS = [
     "cid", "text", "time", "time_parsed", "author", "channel",
@@ -17,7 +18,7 @@ COMMENT_FIELDS = [
 VIDEO_FIELDS = [
     "video_id", "video_title", "video_url", "video_channel",
     "video_channel_id", "video_view_count", "video_upload_date",
-    "video_duration", "keyword"
+    "video_duration", "keyword", "target"
 ]
 
 class YouTubeSearcher:
@@ -56,6 +57,7 @@ class YouTubeSearcher:
                 "video_upload_date": entry.get("upload_date"),
                 "video_duration": entry.get("duration"),
                 "keyword": keyword,
+                "target": KEYWORD_TARGET_MAP.get(keyword, "UMUM"),
             })
 
         logger.info(f"Found {len(videos)} videos for '{keyword}'.")
@@ -186,6 +188,18 @@ def stream_cache_records() -> Iterator[Dict]:
                 logger.warning(f"Skipped corrupted JSON on line {line_num} during export.")
 
 
+def is_upload_date_within_range(upload_date: str) -> bool:
+    """True bila video_upload_date (format YYYYMMDD dari yt-dlp) tidak
+    diketahui, atau tahunnya berada dalam START_YEAR..END_YEAR."""
+    if not upload_date or len(upload_date) < 4:
+        return True
+    try:
+        year = int(upload_date[:4])
+    except ValueError:
+        return True
+    return START_YEAR <= year <= END_YEAR
+
+
 def run_scraper() -> None:
     """Main crawl loop: search each keyword, then scrape unseen videos' comments."""
     storage = StorageManager()
@@ -200,6 +214,13 @@ def run_scraper() -> None:
             video_id = video["video_id"]
             if video_id in scraped_videos:
                 logger.info(f"Skipping already scraped video {video_id}.")
+                continue
+
+            if not is_upload_date_within_range(video.get("video_upload_date")):
+                logger.info(
+                    f"Skipping {video_id}: upload date {video.get('video_upload_date')} "
+                    f"outside {START_YEAR}-{END_YEAR}."
+                )
                 continue
 
             def save_unique(record: Dict) -> None:

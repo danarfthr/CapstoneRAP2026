@@ -8,6 +8,7 @@ from aiohttp import ClientSession, ClientResponseError
 
 from config import config, logger
 from parser import parse_article_html, parse_search_results
+from query_config import KEYWORD_TARGET_MAP
 
 class AsyncFetcher:
     """
@@ -68,22 +69,29 @@ class AsyncFetcher:
 
 
 async def process_article(
-    session: ClientSession, 
-    fetcher: AsyncFetcher, 
-    url: str, 
-    save_callback: Callable[[dict], Awaitable[None]]
+    session: ClientSession,
+    fetcher: AsyncFetcher,
+    url: str,
+    save_callback: Callable[[dict], Awaitable[None]],
+    keyword: str,
 ):
     """Fetches an article, parses it, checks for PLTN/PLTU keywords, and saves if relevant."""
-    html = await fetcher.fetch_html(session, url)
-    if not html:
-        return
+    try:
+        html = await fetcher.fetch_html(session, url)
+        if not html:
+            return
 
-    article_data = parse_article_html(html, url)
-    
-    # article_data is only returned if it passed the contains_keywords() gatekeeper in parser.py
-    if article_data:
-        logger.info(f"MATCH FOUND: {article_data['title']}")
-        await save_callback(article_data)
+        target = KEYWORD_TARGET_MAP.get(keyword, "UMUM")
+        article_data = parse_article_html(html, url, keyword, target)
+
+        # article_data is only returned if it passed the contains_keywords() and date-range gatekeepers in parser.py
+        if article_data:
+            logger.info(f"MATCH FOUND: {article_data['title']}")
+            await save_callback(article_data)
+    except Exception as e:
+        # A single bad response (e.g. a malformed/never-closing SSL stream) must not
+        # take down the whole asyncio.gather() batch for this search page.
+        logger.error(f"Failed to process {url}: {type(e).__name__}: {e}")
 
 
 async def crawl_search_results(
@@ -126,7 +134,7 @@ async def crawl_search_results(
         tasks = []
         for url in new_urls:
             seen_urls.add(url) # Mark as seen immediately so concurrent workers don't duplicate
-            tasks.append(process_article(session, fetcher, url, save_callback))
+            tasks.append(process_article(session, fetcher, url, save_callback, keyword))
             
         if tasks:
             # Run all article fetches for this page concurrently

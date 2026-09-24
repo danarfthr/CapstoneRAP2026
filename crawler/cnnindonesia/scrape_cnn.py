@@ -25,6 +25,7 @@ import asyncio
 import csv
 import json
 import re
+import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Optional
@@ -33,38 +34,17 @@ from urllib.parse import quote_plus, urljoin, urlparse
 from bs4 import BeautifulSoup
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from query_config import KEYWORDS, START_DATE, END_DATE
+
 # Konfigurasi
 BASE_URL = "https://www.cnnindonesia.com"
 SEARCH_URL_TEMPLATE = "https://www.cnnindonesia.com/search?query={query}&page={page}"
 
-# Kata kunci: (query pencarian, target label untuk kolom anotasi sentimen)
-KEYWORDS: list[tuple[str, str]] = [
-    # PLTN - general
-    ("PLTN", "PLTN"),
-    ("energi nuklir", "PLTN"),
-    # PLTN - pro-development
-    ("rencana pembangunan PLTN", "PLTN"),
-    # PLTN - kontra & concerns
-    ("tolak PLTN", "PLTN"),
-    ("keselamatan nuklir", "PLTN"),
-    ("limbah radioaktif", "PLTN"),
-    # PLTU - general
-    ("PLTU", "PLTU"),
-    ("pembangkit listrik tenaga uap", "PLTU"),
-    # PLTU - kontra & concerns
-    ("pensiun dini PLTU", "PLTU"),
-    ("emisi PLTU", "PLTU"),
-    ("warga tolak PLTU", "PLTU"),
-    # Context
-    ("transisi energi Indonesia", "UMUM"),
-]
+# Kata kunci & rentang tahun: lihat crawler/query_config.py (dipakai bareng semua sumber).
 
 # Jaring pengaman jumlah halaman pencarian per kata kunci. Pencarian akan berhenti lebih cepat begitu satu halaman tidak membawa URL baru, tapi angka ini mencegah crawl "tak berujung" ke halaman yang sudah tidak relevan (hasil pengujian: relevansi menurun tajam setelah ~halaman 80).
 MAX_PAGES_PER_KEYWORD = 50
-
-# Rentang tahun artikel yang diambil. Format "YYYY-MM-DD", atau None berarti tidak ada batas. Artikel di luar rentang dilewati sebelum halamannya dibuka (tahun diambil dari ID artikel di URL),.
-START_DATE: Optional[str] = "2019-01-01"
-END_DATE: Optional[str] = None
 
 # Berkas cache JSONL: satu baris = satu artikel. Dipakai untuk resume.
 CACHE_FILE = Path("cnn_energy_cache.jsonl")
@@ -216,8 +196,52 @@ def extract_article_data(html: str, url: str) -> dict:
         "jumlah_karakter_isi": len(content),
     }
 
+class ResilientCrawler:
+    """Bungkus AsyncWebCrawler dengan auto-recovery. Setelah berjam-jam jalan
+    terus-menerus, browser Chromium di baliknya kadang mati sendiri (muncul
+    sebagai 'Target crashed' / 'Connection closed while reading from the
+    driver' pada SETIAP request berikutnya, bukan cuma sekali - retry di
+    fetch_with_retry() tidak menolong karena browser-nya sendiri yang rusak).
+    Kalau gagal total beberapa kali berturut-turut, browser dianggap rusak
+    dan dibuat ulang otomatis, supaya crawl bisa lanjut tanpa restart manual.
+    """
+
+    def __init__(self, restart_after_failures: int = 5):
+        self.restart_after_failures = restart_after_failures
+        self.consecutive_failures = 0
+        self.crawler = AsyncWebCrawler()
+
+    async def start(self):
+        await self.crawler.start()
+
+    async def close(self):
+        await self.crawler.close()
+
+    async def _restart_browser(self):
+        print(
+            f"    [!] {self.consecutive_failures} kegagalan beruntun - browser "
+            f"sepertinya rusak (crash/connection closed), membuat ulang sesi browser..."
+        )
+        try:
+            await self.crawler.close()
+        except Exception:
+            pass  # browser yang sudah rusak kadang gagal ditutup dengan bersih
+        self.crawler = AsyncWebCrawler()
+        await self.crawler.start()
+        self.consecutive_failures = 0
+
+    async def fetch(self, url: str, config: CrawlerRunConfig):
+        result = await fetch_with_retry(self.crawler, url, config)
+        if result is None:
+            self.consecutive_failures += 1
+            if self.consecutive_failures >= self.restart_after_failures:
+                await self._restart_browser()
+        else:
+            self.consecutive_failures = 0
+        return result
+
 async def collect_urls_for_keyword(
-    crawler: AsyncWebCrawler, query: str
+    resilient: ResilientCrawler, query: str
 ) -> list[str]:
     """Telusuri semua halaman pencarian untuk satu kata kunci. Berhenti begitu satu halaman tidak membawa URL baru, atau setelah MAX_PAGES_PER_KEYWORD halaman (jaring pengaman).
     """
@@ -227,7 +251,7 @@ async def collect_urls_for_keyword(
 
     for page in range(1, MAX_PAGES_PER_KEYWORD + 1):
         search_url = SEARCH_URL_TEMPLATE.format(query=quote_plus(query), page=page)
-        result = await fetch_with_retry(crawler, search_url, build_search_config())
+        result = await resilient.fetch(search_url, build_search_config())
 
         if result is None:
             print(f"    Halaman {page}: gagal total setelah retry, hentikan paginasi.")
@@ -314,9 +338,12 @@ def export_cache_to_final_files() -> int:
 async def main() -> None:
     seen_urls = load_seen_urls()
 
-    async with AsyncWebCrawler() as crawler:
+    resilient = ResilientCrawler()
+    await resilient.start()
+
+    try:
         for query, target in KEYWORDS:
-            urls = await collect_urls_for_keyword(crawler, query)
+            urls = await collect_urls_for_keyword(resilient, query)
 
             new_urls = [u for u in urls if u not in seen_urls]
 
@@ -337,7 +364,7 @@ async def main() -> None:
             )
 
             for url in candidate_urls:
-                result = await fetch_with_retry(crawler, url, ARTICLE_CONFIG)
+                result = await resilient.fetch(url, ARTICLE_CONFIG)
                 seen_urls.add(url)  # tandai sudah dicoba, sukses ataupun gagal
 
                 if result is None:
@@ -358,6 +385,8 @@ async def main() -> None:
                 append_to_cache(data)
                 print(f"    [v] Tersimpan: {data['judul'][:70]}")
                 await asyncio.sleep(REQUEST_DELAY)
+    finally:
+        await resilient.close()
 
     export_cache_to_final_files()
 
