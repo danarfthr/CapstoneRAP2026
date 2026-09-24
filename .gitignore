@@ -1,0 +1,6 @@
+# Byte-compiled Python files
+__pycache__/
+*.py[cod]
+
+# Crawler run logs (regenerated every run, not meant for version control)
+*.log
