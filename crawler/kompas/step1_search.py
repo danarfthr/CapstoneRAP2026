@@ -39,16 +39,18 @@ from query_config import KEYWORDS, KEYWORDS_TEST, START_YEAR, END_YEAR
 # ---------------------------------------------------------------- konfigurasi
 
 MODE_TEST = False          # True = pakai KEYWORDS_TEST (5 query saja)
-MAX_PAGE_PER_TAHUN = 50     # jaring pengaman - halaman_maks (dari total hasil
+MAX_PAGE_PER_TAHUN = None     # jaring pengaman - halaman_maks (dari total hasil
                             # asli Kompas) yang beneran nyetop paginasi
-TAHUN_MIN = START_YEAR
-TAHUN_MAX = END_YEAR
+TAHUN_MIN = 2021
+TAHUN_MAX = 2026
 JEDA_ANTAR_HALAMAN = 3     # detik
 MAX_RETRY = 3
 JEDA_RETRY_AWAL = 5        # detik, dilipatgandakan tiap retry (backoff)
+MAX_PAGE_HARD_CAP = 200
 
 OUT_DIR = Path(__file__).parent / "data"
 OUT_FILE = OUT_DIR / "urls.json"
+PROGRESS_FILE = OUT_DIR / "progress.json"
 
 # ------------------------------------------------------------------- helpers
 
@@ -104,18 +106,17 @@ async def arun_dengan_retry(crawler, url, cfg):
 
 
 async def collect_links_tahun(crawler, keyword: str, target: str,
-                               tahun: int) -> list[dict]:
-    """Ambil SEMUA artikel asli untuk satu (keyword, tahun), berhenti begitu
-    halaman kosong atau kelar hasil asli (halaman_maks) - nggak dibatasi
-    kuota, sebanyak yang beneran ada."""
+                               tahun: int) -> tuple[list[dict], bool]:
+    """Ambil SEMUA artikel asli untuk satu (keyword, tahun). Return (hasil,
+    selesai) - selesai=False kalau berhenti gara-gara request gagal (browser
+    crash, timeout habis retry), biar batch ini nggak ditandai 'done' dan
+    dicoba lagi pas restart."""
     cfg = CrawlerRunConfig(
         cache_mode=CacheMode.BYPASS,
         extraction_strategy=JsonCssExtractionStrategy(SEARCH_SCHEMA),
         wait_for=WAIT_FOR,
         wait_for_timeout=20000,
-        scan_full_page=False,  # True bikin scroll trigger widget "trending"
-                                # yang nyelip ke .articleList (item nggak
-                                # relevan, ketauan pas cek tahun 2026)
+        scan_full_page=False,
         page_timeout=60000,
         delay_before_return_html=1.5,
     )
@@ -125,26 +126,20 @@ async def collect_links_tahun(crawler, keyword: str, target: str,
 
     hasil: list[dict] = []
     url_halaman_sebelumnya: set[str] = set()
-    halaman_maks = None  # diisi setelah p1, dari total hasil asli Kompas
+    halaman_maks = None
+    selesai = True
 
-    for page in range(1, MAX_PAGE_PER_TAHUN + 1):
-        if halaman_maks is not None and page > halaman_maks:
-            print(f"    [selesai] {tahun}: udah lewat halaman terakhir "
-                  f"({halaman_maks}) dari total hasil asli")
-            break
+    page = 1
 
+    while True:
         url = search_url(keyword, page, start_date, end_date)
         res = await arun_dengan_retry(crawler, url, cfg)
 
         if not res.success:
             print(f"    [gagal] {tahun} p{page} - {res.error_message}")
+            selesai = False
             break
 
-        # Kalau query+rentang tanggal ini 0 hasil asli, Kompas nggak nampilin
-        # empty state - dia isi .articleList dengan widget "artikel trending"
-        # generik (markup .articleItem yang sama, jadi ikut ke-extract).
-        # Satu-satunya pembeda: teks "Ditemukan N hasil" cuma ada kalau ada
-        # hasil pencarian asli.
         if "headArticle-count" not in (res.html or ""):
             print(f"    [kosong] {tahun} p{page}: 0 hasil asli "
                   f"(halaman fallback trending, dibuang)")
@@ -157,12 +152,10 @@ async def collect_links_tahun(crawler, keyword: str, target: str,
         if page == 1:
             total = total_hasil_dari_html(res.html)
             if total is not None and items:
-                halaman_maks = -(-total // len(items))  # ceil division
+                halaman_maks = -(-total // len(items))
 
         url_sekarang = {bersihkan_url(it.get("url", "")) for it in items}
 
-        # Kalau halaman ini identik dengan halaman sebelumnya, paginasi
-        # nggak jalan untuk kombinasi parameter ini - berhenti.
         if page > 1 and url_sekarang == url_halaman_sebelumnya:
             print(f"    [!] {tahun} p{page} identik dengan p{page-1}")
             break
@@ -177,9 +170,18 @@ async def collect_links_tahun(crawler, keyword: str, target: str,
 
         print(f"    [ok] {tahun} p{page}: {len(items)} item")
 
-        await asyncio.sleep(JEDA_ANTAR_HALAMAN)
+        if halaman_maks is not None and page >= halaman_maks:
+            print(f"    [selesai] {tahun}: udah nyampe halaman_maks ({halaman_maks})")
+            break
 
-    return hasil
+        if page >= MAX_PAGE_HARD_CAP:
+            print(f"    [!] {tahun}: nyampe hard cap ({MAX_PAGE_HARD_CAP}), berhenti paksa")
+            break
+
+        await asyncio.sleep(JEDA_ANTAR_HALAMAN)
+        page = page + 1
+
+    return hasil, selesai
 
 
 # ------------------------------------------------------------------ main
@@ -197,23 +199,40 @@ async def main():
                     "Chrome/124.0 Safari/537.36"),
     )
 
-    # Lanjutin dari hasil run sebelumnya (kalau ada) - jangan ilang gara-gara
-    # sekarang jalan tanpa kuota.
     terpilih: list[dict] = []
     if OUT_FILE.exists():
         with open(OUT_FILE, encoding="utf-8") as f:
             terpilih = json.load(f)
         print(f"lanjut dari run sebelumnya: {len(terpilih)} artikel udah ada\n")
 
+    selesai_set: set[str] = set()
+    if PROGRESS_FILE.exists():
+        with open(PROGRESS_FILE, encoding="utf-8") as f:
+            selesai_set = set(json.load(f))
+        print(f"progress sebelumnya: {len(selesai_set)} (keyword, tahun) udah selesai\n")
+
     seen: set[str] = {it["url"] for it in terpilih}
     gagal_parse: list[str] = []
     mentah = 0
+
+    OUT_DIR.mkdir(exist_ok=True)
+
+    def simpan():
+        with open(OUT_FILE, "w", encoding="utf-8") as f:
+            json.dump(terpilih, f, ensure_ascii=False, indent=2)
+        with open(PROGRESS_FILE, "w", encoding="utf-8") as f:
+            json.dump(sorted(selesai_set), f, ensure_ascii=False, indent=2)
 
     async with AsyncWebCrawler(config=browser) as crawler:
         for kw, target in daftar:
             print(f"=== [{target}] {kw} ===")
             for tahun in tahun_list:
-                items = await collect_links_tahun(crawler, kw, target, tahun)
+                progress_key = f"{kw}||{tahun}"
+                if progress_key in selesai_set:
+                    print(f"    [skip] {tahun}: udah selesai run sebelumnya")
+                    continue
+
+                items, selesai = await collect_links_tahun(crawler, kw, target, tahun)
                 mentah += len(items)
 
                 for it in items:
@@ -226,8 +245,6 @@ async def main():
                         gagal_parse.append(u)
                         continue
                     if th != tahun:
-                        # halaman search kadang nyelip artikel di luar
-                        # rentang start_date/end_date - buang biar konsisten
                         continue
 
                     seen.add(u)
@@ -235,9 +252,12 @@ async def main():
                     it["tahun"] = th
                     terpilih.append(it)
 
-    OUT_DIR.mkdir(exist_ok=True)
-    with open(OUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(terpilih, f, ensure_ascii=False, indent=2)
+                if selesai:
+                    selesai_set.add(progress_key)
+
+                simpan()
+
+    simpan()
 
     # --- laporan ----------------------------------------------------------
     print(f"\n{'=' * 55}")

@@ -74,6 +74,7 @@ KEYWORDS = [
     ("krisis listrik Indonesia", "UMUM"),
 ]
 
+
 # Buat uji coba pertama - 5 query saja biar cepat kelihatan kalau ada yang salah.
 KEYWORDS_TEST = [
     ("PLTN", "PLTN"),
