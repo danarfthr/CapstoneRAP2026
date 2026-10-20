@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -75,7 +76,11 @@ export default function Home() {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        // Here you would redirect to dashboard
+        window.setTimeout(() => {
+          window.location.assign(
+            process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3000"
+          );
+        }, 350);
       }
       setLoadingProgress(Math.min(progress, 100));
 
@@ -105,9 +110,9 @@ export default function Home() {
 
         {/* Navbar */}
         <nav className={styles.navbar} role="navigation">
-          <a href="/" className={styles.logo} id="logo-loading">
+          <Link href="/" className={styles.logo} id="logo-loading">
             SentimentLens
-          </a>
+          </Link>
         </nav>
 
         {/* Loading Content */}
@@ -202,9 +207,9 @@ export default function Home() {
         role="navigation"
         aria-label="Main navigation"
       >
-        <a href="/" className={styles.logo} id="logo">
+        <Link href="/" className={styles.logo} id="logo">
           SentimentLens
-        </a>
+        </Link>
         <ul className={styles.navLinks}>
           <li>
             <a
