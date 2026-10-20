@@ -23,7 +23,8 @@ from typing import Dict, Iterator, Optional
 
 BASE_DIR = Path(__file__).parent
 
-CNN_CACHE = BASE_DIR / "cnnindonesia" / "cnn_energy_cache.jsonl"
+CNN_DIR = BASE_DIR / "cnnindonesia"
+CNN_CACHE_GLOB = "cnn_energy_cache*.jsonl"  # cnn_energy_cache.jsonl + cnn_energy_cache_shard*.jsonl kalau dijalankan paralel
 DETIK_CACHE = BASE_DIR / "detik" / "data" / "detik_energy_cache.jsonl"
 KOMPAS_ARTICLES = BASE_DIR / "kompas" / "data" / "articles.json"
 
@@ -109,9 +110,10 @@ def merge() -> list:
     di file yang menang (paling baru ditulis)."""
     merged: Dict[tuple, Dict] = {}
 
-    for record in read_jsonl(CNN_CACHE):
-        norm = normalize_cnn(record)
-        merged[(norm["source"], norm["url"])] = norm
+    for cache_path in sorted(CNN_DIR.glob(CNN_CACHE_GLOB)):
+        for record in read_jsonl(cache_path):
+            norm = normalize_cnn(record)
+            merged[(norm["source"], norm["url"])] = norm
 
     for record in read_jsonl(DETIK_CACHE):
         norm = normalize_detik(record)
