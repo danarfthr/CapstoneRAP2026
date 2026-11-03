@@ -1,0 +1,26 @@
+You are an expert NLP assistant specializing in energy policy in Indonesia.
+Analyze whether each YouTube Comment is related to the topic of PLTN (nuklir / nuclear power plants) or PLTU (batu bara / coal-fired power plants) in Indonesia, contextually aided by the Video Title.
+
+Analyze the following list:
+ID: 0 | Title: Prabowo Ajak Jepang Kembangkan Energi Nuklir di Indonesia | Comment: @USER Maaf bukan Batam tapi Batan salah ketik. Tapi kita tetap dicekik dg tariff, padahal kita gak ke cina? Saya rasa sudah tidak relevan untuk era milenial sekarang gaya2 dulu jaman perang dingin. Jaman sekarang, terserah kita sekutu atau bukan, tetap negara adidaya bisa sewaktu2 melakukan penyerangan baik secara ekonomi ataupun militer. Sama dg nuklir, Amerika sendiri membuktikan, bahwa negara tanpa senjata nuklir akan setiap saat bisa dijajah atau dibunuh presidennya tanpa alasan yg jelas. Sampai saat ini strategi Kim Jong Un sudah tepat. Bom Nuklir adalah kewajiban di era sekarang untuk me
+ID: 1 | Title: SALAH SATU TRAGEDI KELAM TRANSPORTASI INDONESIA | Comment: hati aku blm mau sub, tapi aku selalu nonton chanel ini
+ID: 2 | Title: Pemerintah Larang Ekspor Batu Bara Sepanjang Januari 2022 | Comment: Mantap pak jokowi
+ID: 3 | Title: Membuat Reaktor Thorium Fusi Dingin | Comment: Pak lihatin cara pembuatan alatnya
+ID: 4 | Title: Cara Kerja Reaktor Nuklir Kapal Induk & Kapal Selam | Comment: ada ide konyol dari saya, kapal selam kalu bisa nangkap ikan dan memasaknya memanfaatkan panas dari reaktor akan lebih lama lagi menyelam dan ini bisa di gunakan dalm misi pengintaian dan dalam kondisi kehabisan logistik
+ID: 5 | Title: Harga Batu Bara Mau Naik, Tarif Listrik Ikut Menyala Dilema PLN dan Tambang Kembali Memanas | Comment: Tapi harga buy PLN/ BB dalam negeri secara aturan tidak ada kenaikan, kenapa bisa naik?
+ID: 6 | Title: Mitsui Sells Entire Shareholding in Paiton Energy Coal-Fired Power Plant | tvOne Market News | Comment: PLTU Suralaya juga dong berarti 2025 resmi ga operasi unit 1-8 sekarang lagi bangun lagi pembangkit unit 9-10
+ID: 7 | Title: BATUBARA RI NYUNGSEP 2026?! Bea Ekspor Naik, Jalan Didemo, Jalur Air Kena BENCANA | Comment: nyungsep2 asbun aja om benix, listrik lu noh 70% batubara. belum lagi india china beberapa negara berkembang afrika, bangladesh, pakistan butuh batubara smua itu..
+ID: 8 | Title: Krisis Listrik di Indonesia? Tata Kelola Batu Bara dan Pasokan Jadi Sorotan | Comment: Negara banyak utang ke pln, pln banyak utsng juga ke pengusaha batubara. Bayar dulu dong, maka batubaranya lancar.
+ID: 9 | Title: LISTRIK PADAM! Indonesia Krisis Batu Bara | Comment: Nah itu yg kami di pulau Sumatra rasakan
+ID: 10 | Title: Mengapa pemerintah 'setengah hati' memensiunkan PLTU? - BBC News Indonesia | Comment: Mau ganti ke PLTN pada blm siap trs solusinya apa?jgn hny memberitakan dampak jeleknya saja
+ID: 11 | Title: Mitsui Sells Entire Shareholding in Paiton Energy Coal-Fired Power Plant | tvOne Market News | Comment: RH ini kan Regal Hotel, jaringan bisnis perhotelan yg berpusat di hongkong. Kok bisa ya, mau beli PLTU Sumpah ga habis pikir sama dunia bisnis sekarang ini
+ID: 12 | Title: PLN Masih Kekurangan Pasokan Batubara 20 Juta Ton, Ancaman Pemadaman Listrik Masih Mengintai | Comment: Lawakan tidak lucu oleh negara..... Bisa nya negara penghasil batu bara. Tapi PLN kekurangan batubara
+ID: 13 | Title: Seri Megaproyek Termahal BUMN - PLTU Batang, Jawa Tengah | BUMN Spotlight | Comment: Mungkin bisa batubara diganti bioenergi/biomasa yg pembakarannya lbh ramah lingkungan di pltu.
+ID: 14 | Title: Cara Kerja Reaktor Nuklir Kapal Induk & Kapal Selam | Comment: @USER untuk saat ini memang tak mungkin bro Indonesia tak ada uang aku cuma berandai-andai dampak lingkungan akses teknologi nuklir ijin dari badan nuklir PBB juga tak mudah iran saja di sangsi gara gara nekat mengembangkan energi nuklir
+ID: 15 | Title: PLTU Batu Bara Dipensiunkan Mulai 2025 | Kabar Pasar tvOne | Comment: Pembangunan PLTUnya belum selesai udah direncanakan mau di pensiunkan .
+ID: 16 | Title: Indonesia Akan Bangun Pembangkit Listrik Tenaga Nuklir | Comment: Ngeri..jangan lah..
+ID: 17 | Title: Dituding Jadi Sumber Polusi, PLTU Batu Bara Layak Pensiun Dini? | Comment: Polusi udara dri PLTU? KOCAK,
+ID: 18 | Title: PLTN Pertama RI Dibangun di Babel, Beroperasi Tahun 2030 | Comment: Jgn sampai bangunan PLTN juga di korup meleduk kacau negara
+ID: 19 | Title: GUNCANG ASIA‼️MEDIA CHINA KAGUMI INDONESIA TEMUKAN 24 RIBU TON URANIUM‼️ PUTIN SIAP BANTU⁉️ | Comment: bangun tenaga nuklir ga usah ragu ga ush dgr ocean yg tdk berarti kpn lagi mau maju jng tanggung2
+
+Return JSON only, in this format: {"results": [{"id": <ID>, "relevancy": true or false}]}

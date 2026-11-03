@@ -1,0 +1,55 @@
+keyword,target,video,komentar,relevan_menurut_model,yield_relevan,porsi_video_terbesar,video_terbesar,rekomendasi,kandidat_pengganti(belum diuji),alasan
+reaktor daya eksperimental,PLTN,2,17,0,0.0,0.94,reaktor nuklir fusi dingin percobaan pertama men,GANTI,reaktor daya eksperimental BRIN PLTN,"17 komentar, 0 relevan"
+small modular reactor,PLTN,6,9020,271,0.03,0.55,Small Modular Reactors Explained - Nuclear Power,GANTI,SMR PLTN Indonesia,Video SMR luar negeri dominan (B12); yield 3%
+radiasi nuklir,PLTN,7,9348,727,0.078,0.25,83 Hari Hidup Dengan Kulit Meleleh! Karena Abaik,GANTI,bahaya PLTN Indonesia,Radiasi/insiden = Irrelevant (B13); yield 8%
+thorium,PLTN,9,16772,2023,0.121,0.36,Why Thorium rocks -- Science Sundays,GANTI,torium PLTN Indonesia,Thorium/cadangan tanpa kaitan listrik (B12/B14); yield 12%
+limbah radioaktif,PLTN,5,1471,296,0.201,0.43,Jerman Bangun Pembuangan Limbah Nuklir,GANTI,limbah PLTN Indonesia,Limbah radioaktif = Irrelevant (B13)
+uranium Indonesia,PLTN,14,4637,1235,0.266,0.31,Uranium Kalimantan: Ancaman atau Harapan?,GANTI,uranium untuk PLTN Indonesia,Uranium/tambang tanpa kaitan pembangkit (B12/B14)
+PLTN Muria,PLTN,7,771,31,0.04,0.32,"Rahasia Gunung Muria, Pulau yang Hilang dari Jaw",PERSEMPIT,rencana PLTN Muria Jepara,Hasil video gunung/selat Muria (geologi)
+PLTU mangkrak,PLTU,8,112,12,0.107,0.46,Primetime News - Proyek Mangkrak Pembangkit List,PERSEMPIT,PLTU mangkrak PLN KPK,Hasil 'proyek listrik mangkrak' umum
+net zero emission Indonesia,UMUM,9,69,9,0.13,0.72,Bioenergi: Transisi Menuju Net Zero Emission unt,PERSEMPIT,net zero pensiun PLTU Indonesia,EBT/transisi tanpa PLTU/PLTN = Irrelevant (B16)
+PLTU captive smelter,PLTU,6,153,20,0.131,0.74,Barat Gemetar! Cara Indonesia Lumpuhkan Industri,PERSEMPIT,PLTU captive nikel dampak,Hasil video industri nikel
+JETP transisi energi,UMUM,7,22,3,0.136,0.27,Indonesia-AS Sepakat Pendanaan Transisi Energi J,PERSEMPIT,JETP pensiun dini PLTU,idem (B16)
+pembangkit listrik tenaga nuklir,PLTN,3,2708,477,0.176,0.56,How Nuclear Reactors Power Aircraft Carriers & S,PERSEMPIT,pembangkit listrik tenaga nuklir Indonesia,Dominan video kapal/kapal selam
+pembangkit listrik tenaga uap,PLTU,5,2475,445,0.18,0.44,Bagaimana cara kerja pembangkit listrik termal?,PERSEMPIT,PLTU batu bara Indonesia,Dominan video cara kerja umum (B7)
+krisis listrik Indonesia,UMUM,9,802,214,0.267,0.58,Krisis Sumut: Solar Susah dan Listrik Mati,PERSEMPIT,krisis listrik pasokan batu bara PLN,Relevan hanya bila soal pasokan batu bara PLN (B11)
+SMR reaktor modular,PLTN,10,5506,1568,0.285,0.56,Mengapa Pembangkit Listrik Tenaga Nuklir Skala K,PERSEMPIT,SMR PLTN Indonesia,Dominan video SMR luar negeri
+reaktor nuklir,PLTN,5,1752,567,0.324,0.53,Melihat lebih dekat reaktor nuklir milik Indones,PERSEMPIT,reaktor PLTN Indonesia,Dominan reaktor riset Serpong/umum (B12)
+dekarbonisasi listrik,UMUM,5,23,8,0.348,0.43,Kendaraan Listrik Jadi Jurus Jitu Pemerintah Men,PERSEMPIT,dekarbonisasi PLTU,idem (B16)
+bauran energi nasional,UMUM,4,5,3,0.6,0.4,Pemerintah Tingkatkan Bauran Energi Nasional | I,PERSEMPIT,bauran energi PLTU PLTN,idem (B16); hanya 5 komentar
+PLTU Paiton,PLTU,5,2522,155,0.061,0.8,SALAH SATU TRAGEDI KELAM TRANSPORTASI INDONESIA,PERTAHANKAN,,Yield 6%; video terbesar dominan -> perlu batas komentar/video
+PLTN,PLTN,12,4117,1321,0.321,0.28,Bagaimana Kecelakaan Nuklir Terbesar di Dunia Te,PERTAHANKAN,,Yield 32%
+transisi energi Indonesia,UMUM,8,872,289,0.331,0.62,Tantangan Besar Transisi Energi Bersih Terbaruka,PERTAHANKAN,,Yield 33%; video terbesar dominan -> perlu batas komentar/video
+PLTU,PLTU,7,629,210,0.334,0.54,Bagaimana cara kerja pembangkit listrik tenaga t,PERTAHANKAN,,Yield 33%
+RUPTL PLN,UMUM,8,237,86,0.363,0.86,"RUPTL 2025-2034, Prospek Suram Transisi Energi P",PERTAHANKAN,,Yield 36%; video terbesar dominan -> perlu batas komentar/video
+PLTU batu bara,PLTU,4,132,48,0.364,0.79,COAL FLOW IN PLTU (STEAM POWER PLANT),PERTAHANKAN,,Yield 36%; video terbesar dominan -> perlu batas komentar/video
+energi nuklir,PLTN,5,252,95,0.377,0.97,Prabowo Invites Japan to Develop Nuclear Energy ,PERTAHANKAN,,Yield 38%; video terbesar dominan -> perlu batas komentar/video
+PLTU Batang,PLTU,6,120,47,0.392,0.66,"Seri Megaproyek Termahal BUMN - PLTU Batang, Jaw",PERTAHANKAN,,Yield 39%; video terbesar dominan -> perlu batas komentar/video
+BRIN nuklir,PLTN,7,226,94,0.416,0.36,"Di Hadapan Presiden Prabowo, Kepala BRIN Ungkap ",PERTAHANKAN,,Yield 42%
+IAEA Indonesia,PLTN,5,504,214,0.425,0.63,MELESAT MAJU !! KEMAMPUAN TEKNOLOGI NUKLIR INDON,PERTAHANKAN,,Yield 42%; video terbesar dominan -> perlu batas komentar/video
+ekspor batu bara listrik,PLTU,10,1252,547,0.437,0.64,"BATUBARA RI NYUNGSEP 2026?! Bea Ekspor Naik, Jal",PERTAHANKAN,,Yield 44%; video terbesar dominan -> perlu batas komentar/video
+kebijakan nuklir nasional,PLTN,8,574,266,0.463,0.48,"DPR: Jika RI Serius Kembangkan Nuklir, BATAN Har",PERTAHANKAN,,Yield 46%
+PLTN Bangka Belitung,PLTN,10,712,346,0.486,0.76,Reaktor Nuklir Pertama Indonesia Dibangunn di Ba,PERTAHANKAN,,Yield 49%; video terbesar dominan -> perlu batas komentar/video
+polusi PLTU,PLTU,4,183,89,0.486,0.34,"Dituding Jadi Sumber Polusi, PLTU Batu Bara Laya",PERTAHANKAN,,Yield 49%
+penolakan PLTN,PLTN,2,168,84,0.5,0.93,Indonesia Is Not Ready for Nuclear Power Plants ,PERTAHANKAN,,Yield 50%; video terbesar dominan -> perlu batas komentar/video
+pensiun dini PLTU,PLTU,2,211,113,0.536,0.97,Investor Global Dukung Indonesia Pensiun Dini PL,PERTAHANKAN,,Yield 54%; video terbesar dominan -> perlu batas komentar/video
+penghentian PLTU,PLTU,8,145,80,0.552,0.31,Presiden Prabowo akan Hentikan Operasional PLTU ,PERTAHANKAN,,Yield 55%
+PLTN Indonesia,PLTN,8,1165,694,0.596,0.78,Indonesia Akan Bangun Pembangkit Listrik Tenaga ,PERTAHANKAN,,Yield 60%; video terbesar dominan -> perlu batas komentar/video
+moratorium PLTU,PLTU,8,319,198,0.621,0.68,PLTU Batu Bara Dipensiunkan Mulai 2025 | Kabar P,PERTAHANKAN,,Yield 62%; video terbesar dominan -> perlu batas komentar/video
+pembangkit batu bara,PLTU,4,37,7,0.189,0.32,"Bahlil: Batu Bara Tidak Langka, Fokus Perbaiki P",PERTAHANKAN (data sedikit),,Yield 19%
+pencemaran udara PLTU,PLTU,3,97,30,0.309,0.74,Keluarnya Limbah Batu Bara dari Kategori Berbaha,PERTAHANKAN (data sedikit),,Yield 31%; video terbesar dominan -> perlu batas komentar/video
+BATAN nuklir,PLTN,5,53,17,0.321,0.68,Profil Pusat Reaktor Serba Guna - PRSG BATAN 202,PERTAHANKAN (data sedikit),,Yield 32%; video terbesar dominan -> perlu batas komentar/video
+dampak kesehatan PLTU,PLTU,2,58,21,0.362,0.84,Ancaman Maut PLTU Batubara,PERTAHANKAN (data sedikit),,Yield 36%; video terbesar dominan -> perlu batas komentar/video
+harga batu bara PLN,PLTU,7,99,39,0.394,0.59,Penambang Batu Bara Siap Cuan Besar Dari BLU PLN,PERTAHANKAN (data sedikit),,Yield 39%
+PLTU Suralaya,PLTU,7,91,38,0.418,0.43,Luhut Mau Suntik Mati PLTU Suralaya demi Tekan P,PERTAHANKAN (data sedikit),,Yield 42%
+co-firing biomassa PLTU,PLTU,5,19,8,0.421,0.37,Kombinasi Energi Terbarukan dan Fosil pada PLTU ,PERTAHANKAN (data sedikit),,Yield 42%
+BAPETEN,PLTN,3,7,3,0.429,0.43,Pelantikan Mohammad Ridwan Sebagai Sekretaris Ut,PERTAHANKAN (data sedikit),,Yield 43%
+rencana pembangunan PLTN,PLTN,3,84,37,0.44,0.75,"Indonsia Menuju Era Nuklir,  Rosatom Rusia Siap ",PERTAHANKAN (data sedikit),,Yield 44%; video terbesar dominan -> perlu batas komentar/video
+PLTU Cirebon,PLTU,5,34,15,0.441,0.32,Exploring the Grandeur of the Cirebon 2 Steam Po,PERTAHANKAN (data sedikit),,Yield 44%
+emisi PLTU,PLTU,6,72,34,0.472,0.4,"Intrik Subsidi Kendaraan Listrik, Emisi Knalpot ",PERTAHANKAN (data sedikit),,Yield 47%
+tolak PLTN,PLTN,5,37,18,0.486,0.38,Profesor Nuklir Bicara #6,PERTAHANKAN (data sedikit),,Yield 49%
+keselamatan nuklir,PLTN,1,2,1,0.5,1.0,PLTN Aman !! :: Dr. Yus Rusdian ~ Tentang Kesela,PERTAHANKAN (data sedikit),,Yield 50%; video terbesar dominan -> perlu batas komentar/video
+PLTU Celukan Bawang,PLTU,5,16,8,0.5,0.31,Bu Surayah Bertahan Di Tengah Buruknya Udara PLT,PERTAHANKAN (data sedikit),,Yield 50%
+PLTN Kalimantan,PLTN,5,34,19,0.559,0.62,Rencana Pembangunan Pembangkit Listrik Tenaga Nu,PERTAHANKAN (data sedikit),,Yield 56%; video terbesar dominan -> perlu batas komentar/video
+warga tolak PLTU,PLTU,4,28,17,0.607,0.61,Ratusan Warga Batang Protes Ganti Rugi Proyek PL,PERTAHANKAN (data sedikit),,Yield 61%; video terbesar dominan -> perlu batas komentar/video
+PLTU batubara,PLTU,1,2,2,1.0,1.0,"Stop Building Coal Power Plants, PLN IP Races to",PERTAHANKAN (data sedikit),,Yield 100%; video terbesar dominan -> perlu batas komentar/video
