@@ -1,0 +1,90 @@
+/* ============================================================================
+ * [3] LOADING — ikon, progress bar, dan pesan status
+ * Background, navbar & footer ada di components/layout/layout.module.css
+ * ============================================================================ */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.icon {
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-accent);
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+.chartLine {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawLine 2s ease forwards;
+}
+
+/* ---------- Progress bar ---------- */
+.progressTrack {
+  width: 240px;
+  height: 4px;
+  margin-bottom: var(--spacing-xl);
+  overflow: hidden;
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* ---------- Teks ---------- */
+.title {
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+}
+
+/* ---------- Animasi ---------- */
+@keyframes iconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.85;
+  }
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .title {
+    font-size: var(--font-size-2xl);
+  }
+}
