@@ -46,7 +46,7 @@ def pause(sec: float) -> None:
     time.sleep(sec * SLEEP_SCALE)
 
 
-# ----------------------------------------------------------------------------- data
+# Data
 URL_RE = re.compile(r"https?://\S+|www\.\S+")
 EMAIL_RE = re.compile(r"\S+@\S+\.\S+")
 HASH_RE = re.compile(r"#\w+")
@@ -106,7 +106,7 @@ def make_items(gold: pd.DataFrame, vctx: dict) -> list:
     return items
 
 
-# ----------------------------------------------------------------------------- prompt
+# Prompt
 def render_items(items: list, style: str, context: str) -> str:
     if style == "v1":
         return "\n".join(f"ID: {it['i']} | Title: {it['title']} | Comment: {it['text']}" for it in items)
@@ -144,7 +144,7 @@ def make_batches(items: list, size: int, style: str) -> list:
     return [seq[k:k + size] for k in range(0, len(seq), size)]
 
 
-# ----------------------------------------------------------------------------- parsing
+# Parsing
 FENCE_RE = re.compile(r"```(?:json)?", re.I)
 
 
@@ -194,7 +194,7 @@ def parse_response(text: str, expected: set) -> dict:
     return {}
 
 
-# ----------------------------------------------------------------------------- API
+# API
 class FatalAPIError(RuntimeError):
     """Kesalahan yang tidak ada gunanya di-retry (API key salah, izin ditolak)."""
 
@@ -293,7 +293,7 @@ def backoff_seconds(err: Exception, attempt: int) -> float:
     return min(5 * (2 ** attempt), 60)
 
 
-# ----------------------------------------------------------------------------- run
+# Run
 def classify_batch(client, throttle, template, style, context, batch, max_retries, tag):
     """Mengembalikan ({i: (relevan, alasan)}, jumlah_error). Item yang tetap gagal TIDAK ada di hasil."""
     got, pending, attempt, errs = {}, list(batch), 0, 0
@@ -360,7 +360,7 @@ def run_config(name, cfg, template, items, client, throttle, args, out_dir):
     return preds, errs_total
 
 
-# ----------------------------------------------------------------------------- metrics
+# Metrics
 def wilson(k: int, n: int, z: float = 1.96):
     if n == 0:
         return float("nan"), float("nan")
@@ -395,7 +395,7 @@ def metrics(y: list, p: list) -> dict:
     return out
 
 
-# ----------------------------------------------------------------------------- main
+# Main
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--gold", default=str(HERE / "data" / "gold_yt_v2.csv"))
@@ -491,7 +491,7 @@ def main() -> None:
     print("\nCatatan: set gold 80% relevan karena dirancang seimbang per kelas stance; gunakan recall/spesifisitas, "
           "dan kolom prec@20%/30% untuk perkiraan presisi di data asli.")
 
-    # daftar error + tabel perbandingan untuk audit annotator
+    # Daftar error + tabel perbandingan untuk audit annotator
     compare = gold[["cid", "video_title", "text", "stance", "relevan"]].copy()
     for name, preds in all_preds.items():
         compare[f"pred_{name}"] = [int(preds[i][0]) if i in preds else "" for i in range(len(items))]
