@@ -29,14 +29,17 @@ from pathlib import Path
 
 import pandas as pd
 
-# Pinjam engine dari pipeline relevansi
+HERE = Path(__file__).resolve().parent
+SHARED = HERE.parent.parent / "shared" / "youtube"  # data mentah YouTube dipakai bersama relevance/stance/sentiment
+
+# Pinjam engine dari pipeline relevansi (folder beda: nlp/relevance/youtube/)
+sys.path.insert(0, str(HERE.parent.parent / "relevance" / "youtube"))
 from relevance_v2 import (
     FatalAPIError, GenAIClient, Throttle, backoff_seconds, clean_description,
     est_tokens, get_api_key, load_video_context, wilson,
 )
 
-HERE = Path(__file__).resolve().parent
-SLEEP_SCALE = 1.0 
+SLEEP_SCALE = 1.0
 
 STANCES = ["Support", "Oppose", "Neutral"]  # kelas yang dinilai (komentar sudah relevan)
 
@@ -318,8 +321,8 @@ def print_confusion(cm: dict, labels: list) -> None:
 # Main
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--gold", default=str(HERE / "data" / "gold_yt_v2.csv"))
-    ap.add_argument("--video-context", default=str(HERE / "data" / "video_context.csv"))
+    ap.add_argument("--gold", default=str(SHARED / "gold_yt_v2.csv"))
+    ap.add_argument("--video-context", default=str(SHARED / "video_context.csv"))
     ap.add_argument("--configs", nargs="+", default=["majority", "zero_shot", "v2_ctx"])
     ap.add_argument("--prompt-file", help="template prompt sendiri (pakai {{ITEMS}}); dipakai oleh config 'custom'")
     ap.add_argument("--model", default="gemma-4-26b-a4b-it")

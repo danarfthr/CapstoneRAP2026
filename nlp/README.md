@@ -1,56 +1,77 @@
-# nlp/ — relevansi komentar YouTube (prompt v2 + konteks video)
+# nlp/ — pipeline NLP komentar YouTube & berita (relevansi, stance, sentiment)
 
-Status: **belum di-commit**. Folder ini dibuat 3 November 2026 untuk persiapan laporan Capstone.
+Dikategorikan per **tugas** (relevance / stance / sentiment), lalu per **sumber data** (youtube / news).
+Data mentah YouTube yang dipakai bersama oleh ketiga tugas ada di `shared/youtube/`.
+
+```
+nlp/
+├── shared/youtube/          # data mentah dipakai bersama (gold, konteks video)
+├── relevance/
+│   ├── youtube/             # pipeline relevansi komentar YouTube (terminal, relevance_v2.py)
+│   └── news/                # pipeline relevansi komentar berita (Colab, punya tim News)
+├── stance/youtube/          # pipeline stance komentar YouTube (terminal, stance_v2.py)
+└── sentiment/youtube/       # pipeline sentiment komentar YouTube (Colab notebook)
+```
+
+## shared/youtube/ — data mentah bersama
 
 | Berkas | Fungsi |
 | --- | --- |
-| `relevance_v2.py` | Evaluasi prompt v1 (lama) vs v2 (Pedoman Anotasi v2), dengan/tanpa konteks video, terhadap set gold |
-| `fetch_video_context.py` | Ambil deskripsi, tanggal upload, tag, kategori video lewat yt-dlp |
-| `prompts/relevance_youtube_v1.txt` | Prompt lama apa adanya (untuk pembanding) |
-| `prompts/relevance_youtube_v2.txt` | Prompt baru berbasis Pedoman v2. **Boleh diedit tanpa menyentuh kode** |
-| `data/gold_yt_v2.csv` | 124 komentar berlabel Pedoman v2 (sheet `YT` di `anotasi youtube baru.xlsx`) |
-| `data/video_context.csv` | Konteks 318 dari 319 video (judul, channel, deskripsi, tanggal upload, tag); 1 video sudah dihapus/privat |
-| `data/keyword_audit_youtube.csv` | Yield relevan per keyword (label model v1, 70.773 komentar) |
-| `data/video_audit.csv` | Per video: jumlah komentar, yield, tanggal upload, lolos gerbang atau tidak |
-| `results/` | Keluaran evaluasi (`summary_latest.csv`, `errors_*.csv`, `compare_all.csv`) |
+| `gold_yt_v2.csv` | 124 komentar berlabel Pedoman v2 (relevan/stance/sentiment) — sheet `YT` di `anotasi youtube baru.xlsx` |
+| `video_context.csv` | Konteks 318/319 video (judul, channel, deskripsi, tanggal upload, tag) |
+| `keyword_audit_youtube.csv` | Yield relevan per keyword (label model v1, 70.773 komentar) |
+| `video_audit.csv` | Per video: jumlah komentar, yield, tanggal upload, lolos gerbang atau tidak |
+| `stance_sentiment_input_yt.csv` | 99 komentar relevan + konteks video, format siap-upload untuk notebook Colab stance/sentiment |
+| `fetch_video_context.py` / `video_audit.py` | Skrip pembuat `video_context.csv` / `video_audit.csv` (yt-dlp) |
 
-## Menjalankan evaluasi
+## relevance/youtube/ — relevansi komentar YouTube
 
-Lokal (dari folder `CapstoneRAP2026`):
+Evaluasi prompt v1 (lama) vs v2 (Pedoman Anotasi v2 bagian B), dengan/tanpa konteks video, pada 124 komentar gold (biner).
 
 ```bash
+# dari folder CapstoneRAP2026
 pip install google-genai pandas
 export GEMMA="<api key AI Studio>"          # PowerShell: $env:GEMMA="..."
-python nlp/relevance_v2.py --dry-run         # lihat prompt saja, tidak memanggil API
-python nlp/relevance_v2.py                   # v1_title, v2_title, v2_ctx (±8-10 menit di free tier)
+python nlp/relevance/youtube/relevance_v2.py --dry-run   # lihat prompt saja, tidak memanggil API
+python nlp/relevance/youtube/relevance_v2.py              # v1_title, v2_title, v2_ctx (±8-10 menit)
 ```
 
-Colab: upload folder `nlp/`, lalu
+Alternatif Colab: `nlp/relevance/youtube/Relevancy_Pipeline_NLP_YouTube_Comment.ipynb` (upload `shared/youtube/...` + prompts sebagai input, key dari Colab Secrets `GEMMA`).
 
-```python
-!pip install -q google-genai
-!python nlp/relevance_v2.py          # API key dibaca dari Colab Secrets bernama GEMMA
+Hasil terbaru (lihat `results/summary_latest.csv`): prompt v2 jauh lebih disiplin (specificity 92-96%) dibanding v1 (42% — asal cap "relevan"); `v2_ctx` paling sedikit gagal parse (`unknown`=8 dari 124).
+
+## stance/youtube/ — stance komentar YouTube (Support/Oppose/Neutral)
+
+Evaluasi `majority` (baseline) vs `zero_shot` (tanpa pedoman) vs `v2_ctx` (Pedoman v2 bagian D + konteks video + target), pada 98 komentar relevan.
+
+```bash
+python nlp/stance/youtube/run_stance_eval.py   # parameter terkunci, log otomatis ke results/run_log_stance.md
+# atau langsung:
+python nlp/stance/youtube/stance_v2.py --dry-run
 ```
 
-Opsi yang sering dipakai: `--configs v2_ctx`, `--model <nama model>` (mis. model berbayar),
-`--rpm 100 --tpm 200000` (kalau limit lebih longgar), `--limit 30` (uji cepat),
-`--prompt-file prompts/punya_saya.txt --configs custom` (prompt buatan sendiri; wajib memuat `{{ITEMS}}`).
-Hasil tersimpan per komentar, jadi kalau terputus cukup jalankan ulang (lanjut dari yang sudah selesai).
+Alternatif Colab: `nlp/stance/youtube/Stance_Pipeline_NLP_YouTube_Comment.ipynb` — **catatan**: Colab sempat berkali-kali macet (server/koneksi), run resmi akhirnya lewat terminal.
 
-## Cara membaca hasil
+Hasil terbaru (lihat `results/summary_stance_latest.csv`): `v2_ctx` lebih *robust* (unknown=8/98) walau `zero_shot` tampak unggul di angka mentah (tapi cuma dihitung dari 68/98 sampel "termudah"). Tiga celah untuk tuning: aturan D8 (bantahan argumen → Support) terlalu longgar ke sarkasme, D4 vs D6 kurang tegas, D12 (ganti bahan bakar total) bertentangan dengan gold di kasus co-firing.
 
-- Set gold **80% relevan** karena dirancang seimbang per kelas stance, jadi akurasi mentahnya menyesatkan.
-  Lihat `recall` (berapa dari yang relevan tertangkap) dan `specificity` (berapa dari yang tidak relevan tertolak).
-  Kolom `prec@20%` / `prec@30%` = perkiraan presisi bila di data asli hanya 20% / 30% komentar yang relevan.
-- N=124 kecil: perhatikan kolom `recall_95CI` / `spec_95CI`. Selisih beberapa poin antar konfigurasi belum tentu nyata.
-- `unknown` = komentar yang gagal diproses setelah semua retry. Itu **bukan** False dan tidak ikut dihitung.
-- `errors_<config>.csv` berisi komentar yang salah beserta alasan model (sebut kode aturan Pedoman) untuk dicek annotator.
+## sentiment/youtube/ — sentiment komentar YouTube (Positive/Neutral/Negative)
 
-## Catatan jujur
+Evaluasi `majority` vs `zero_shot` vs `v2_pedoman` (Pedoman v2 bagian C + konteks video), pada 91 komentar berlabel sentiment valid. Dijalankan di Colab: `Sentiment_Pipeline_NLP_YouTube_Comment.ipynb` (template) → `Result_Sentiment_Pipeline_NLP_YouTube_Comment.ipynb` (hasil run).
 
-- Prompt v2 memuat contoh kata dari Pedoman B6 (mis. "belum saatnya", "maksudnya"); beberapa komentar gold memuat kata yang sama.
-  Labelnya tetap bergantung pada konteks video, tapi jangan jadikan ini bukti tunggal.
-- Set gold yang dipakai adalah sampel baru (96 dari 124 komentar tidak ada di anotasi lama), jadi angka v1 di sini tidak
-  bisa dibandingkan langsung dengan angka lama (akurasi 64%, recall 53% pada anotasi lama).
-- Perbaikan prompt di-tuning dari galat model v1 pada gold yang sama (18 FN + 5 FP). Untuk klaim akhir, ukur ulang pada
-  set uji baru yang belum pernah dilihat (lembar `Sheet5`/`Sheet6` di file anotasi, setelah dilabeli).
+Hasil (lihat `results/summary_sentiment_latest.csv`): `v2_pedoman` accuracy 80% / macro-F1 80%, unggul dari `zero_shot` (78%/78%) dan jauh dari `majority` (44%/20%).
+
+## relevance/news/ — relevansi komentar berita (punya tim News)
+
+`Relevancy_Pipeline_NLP_News_Comment_v2.ipynb` — notebook Colab milik rekan tim untuk berita (bukan YouTube). Lihat isinya untuk detail; arsitektur serupa (KWIC + Rubric-Based Prompt).
+
+## Cara membaca hasil evaluasi (semua pipeline)
+
+- **Relevansi**: set gold 80% relevan → akurasi mentah menyesatkan. Lihat `recall`/`specificity`, serta `prec@20%`/`prec@30%` (perkiraan presisi bila data asli cuma 20-30% relevan).
+- **Stance/Sentiment**: kelas tidak seimbang (Neutral dominan) → lihat `macro_F1` dan F1 per kelas, bukan akurasi mentah.
+- **N kecil** (98-124): perhatikan kolom `*_95CI`. Selisih beberapa poin antar konfigurasi belum tentu nyata.
+- `unknown` = komentar yang gagal diproses setelah semua retry. **Bukan** otomatis salah, tidak ikut dihitung di akurasi — tapi makin banyak `unknown`, makin kecil & makin bias sampel yang dievaluasi (lihat kasus `zero_shot` stance).
+- `errors_<config>.csv` di tiap `results/`: komentar yang salah + alasan model (sebut kode aturan Pedoman), untuk audit annotator & bahan tuning prompt.
+
+## Status tuning (per 2026-11-10)
+
+Ketiga prompt v2 (relevansi, stance, sentiment) **masih transkripsi lurus dari Pedoman**, belum di-tuning dari analisis error spesifik — kecuali relevansi yang sudah sempat satu putaran tuning dari galat v1 (18 FN + 5 FP, lihat `relevance/youtube/results/audit_model_v1_vs_gold.xlsx`). Tuning lanjutan sebaiknya fokus ke pola error yang sudah teridentifikasi di `errors_*.csv` masing-masing tugas.

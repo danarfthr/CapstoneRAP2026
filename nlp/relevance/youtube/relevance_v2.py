@@ -30,6 +30,7 @@ from pathlib import Path
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
+SHARED = HERE.parent.parent / "shared" / "youtube"  # data mentah YouTube dipakai bersama relevance/stance/sentiment
 SLEEP_SCALE = 1.0  # 0 saat --stub supaya uji alur tidak menunggu
 
 CONFIGS = {
@@ -398,8 +399,8 @@ def metrics(y: list, p: list) -> dict:
 # Main
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--gold", default=str(HERE / "data" / "gold_yt_v2.csv"))
-    ap.add_argument("--video-context", default=str(HERE / "data" / "video_context.csv"))
+    ap.add_argument("--gold", default=str(SHARED / "gold_yt_v2.csv"))
+    ap.add_argument("--video-context", default=str(SHARED / "video_context.csv"))
     ap.add_argument("--configs", nargs="+", default=["v1_title", "v2_title", "v2_ctx"])
     ap.add_argument("--prompt-file", help="template prompt sendiri (pakai {{ITEMS}}); dipakai oleh config 'custom'")
     ap.add_argument("--model", default="gemma-4-26b-a4b-it")
