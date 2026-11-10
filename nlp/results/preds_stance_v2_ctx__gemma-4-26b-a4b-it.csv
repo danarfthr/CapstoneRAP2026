@@ -1,0 +1,99 @@
+i,cid,target,pred_stance,pred_sentiment,alasan
+0,UgzOl4IAWIq3ogRU2Zt4AaABAg,PLTU,Neutral,Neutral,"Bertanya fakta harga tanpa menilai (D4, C3)"
+1,Ugx1V4UeQ5vUL5SgfIN4AaABAg,PLTU,Neutral,Neutral,"Memberikan info/fakta mengenai status operasi unit (D4, C3)"
+2,UgycNCt6gjBAp0rVHPZ4AaABAg,PLTU,Support,Negative,Membantah argumen kerugian/penurunan (D8)
+3,Ugz24wfoHS4zdGZwXNB4AaABAg,UMUM,Neutral,Negative,Kritik ke pengelola/utang tanpa menolak pembangkit (D5)
+4,Ugz13cti5rxONwuMgod4AaABAg,UMUM,Neutral,Neutral,"Menyatakan fakta pengalaman tanpa menilai (D4, C3)"
+5,UgzdCtWXH0GVCHJx6fp4AaABAg,PLTU,Neutral,Negative,Menanyakan solusi dan mengkritik cara pemberitaan (D6/C4)
+6,Ugw1M4bNt0Q4-4oWD3Z4AaABAg,PLTU,Neutral,Negative,"Kritik ke pengelola/bisnis tanpa menolak pembangkit (D5, C4)"
+7,UgxIOiTtELtlND0-txh4AaABAg,UMUM,Neutral,Negative,"Kritik ke pengelola/negara tanpa menolak pembangkit (D5, C4)"
+8,Ugzrtu-mXR_RpAnUpPd4AaABAg.9T_fJp7VekR9Th9VXKpKk6,PLTU,Oppose,Neutral,"Mengusulkan penggantian batu bara dengan biomassa (D12, C3)"
+9,UgxFkD8LVp2tdUzMXGF4AaABAg.9bvIBjlDKxg9byXStdtTKc,PLTN,Neutral,Negative,"Pesimis soal dana dan izin tanpa bilang jangan (D6), nada pesimis (C4)"
+10,UgzfoaQy4VcwnG1JN7J4AaABAg,PLTU,,,
+11,UgyS33oZsSFJM1JkfCB4AaABAg,PLTN,Oppose,Negative,"Takut dan meminta jangan dibangun (D7, C4)"
+12,UgxySYzGj27RZBSnLH14AaABAg,PLTU,Support,Negative,Mengejek/membantah argumen polusi PLTU (D8)
+13,UgzfHeTebGnKgdN3aep4AaABAg,PLTN,Oppose,Negative,"Kritik korupsi yang jadi alasan menolak (D5, C4)"
+14,UgxgYdxvX1ThWM0UDIx4AaABAg,PLTN,Support,Positive,"Mendorong pembangunan nuklir tanpa ragu (D2, C2)"
+15,UgxymXs-ntiPLDbAnO94AaABAg,PLTN,Support,Positive,"Menyebut manfaat listrik murah (D2, C2)"
+16,UgxySYzGj27RZBSnLH14AaABAg.9tnBTi8ujXK9tycHRwgeOw,PLTU,Neutral,Negative,Kritik biaya/utang tanpa menolak pembangkit (D5)
+17,UgyXevJbv-v_gb59LIR4AaABAg.A_CKHN5-uyoA_GnVoKcaQb,PLTN,Neutral,Negative,"Pesimis soal kemampuan/kesiapan tanpa bilang jangan (D6, C4)"
+18,UgzlHaOruYiDvnCDriF4AaABAg,PLTN,Neutral,Neutral,"Memberi info/syarat teknis tanpa menilai (D4, C3)"
+19,UgyOF7G7WpX2MEwZFwJ4AaABAg,PLTN,Oppose,Negative,Mengajak menolak teknologi nuklir (D3)
+20,UgxbS_PdIsIqjpm4D1x4AaABAg,PLTU,Oppose,Negative,Batu bara diganti total dengan cangkang sawit (D12)
+21,UgyfO5W9oJw6TCvT1Xl4AaABAg,UMUM,Oppose,Neutral,Menyarankan penggantian batu bara dengan sawit (D12/D11)
+22,UgyywEZeGD20r4A4d994AaABAg,PLTN,Support,Positive,Dukungan bersyarat terhadap manfaat dan keamanan (D2)
+23,Ugz7hLudJj_8hLrQXzp4AaABAg,PLTN,Neutral,Negative,"Menyoroti ketidakkonsistenan/biaya tanpa kesimpulan (D4, C4)"
+24,UgyaacS99pQFrd1Qf-V4AaABAg,PLTU,Neutral,Neutral,"Pertanyaan teknis tanpa penilaian (D4, C3)"
+25,UgzvdGz3a8HSFZuNjeV4AaABAg,PLTU,Neutral,Negative,Pertanyaan retoris/sindiran mengenai konsistensi kebijakan (D9/C8)
+26,UgzdOh_AQitMH5Tq7xF4AaABAg,UMUM,Neutral,Negative,Kritik kemampuan bayar PLN tanpa menolak pembangkit (D5)
+27,UgyjxhqBKJO69HieXy14AaABAg,PLTN,Neutral,Neutral,"Bertanya perbandingan bahaya tanpa kesimpulan (A5, C3)"
+28,UgycVgCMwzEr4s6eYY14AaABAg,PLTU,Neutral,Neutral,"Membandingkan tanpa kesimpulan (D4, C3)"
+29,UgwAtTmUKUM8D_k07It4AaABAg,PLTU,Neutral,Neutral,"Bertanya tentang arah kebijakan tanpa menilai (D4, C3)"
+30,UgxVfm4jRjCMTPOBB9l4AaABAg,PLTU,,,
+31,UgyldrKMy56mnjaZJ2R4AaABAg,PLTN,Neutral,Negative,"Menyebut UU dengan nada sedih/kecewa (C4), tanpa posisi jelas (A5)"
+32,UgwXtV1Y-kAY33H4VOd4AaABAg.9OwCAdSLGn09P4l-N7CRBp,PLTU,Neutral,Neutral,"Menjelaskan/mengoreksi maksud kebijakan tanpa menilai (D4, C3)"
+33,UgwHEw5GHGbFAxy6YgN4AaABAg.9V9e88Stcil9VA_6H3bHPz,PLTN,Oppose,Negative,Menyebut bahaya meledak dan tidak mampu (D3/D7)
+34,UgxFvKclHcwlN-5Gaxd4AaABAg,PLTN,Support,Positive,"Mendukung teknologi baru sebagai solusi (D2), nada optimis/pujian (C2)"
+35,UgzH5wxD7hgyWW3ZuJ14AaABAg.APE1jmjvQnAAPYQg5b07Qv,PLTN,Neutral,Negative,"Membahas biaya dan manajemen tanpa kesimpulan (D4, C4)"
+36,Ugz-vEKv5NGR9BMBKeN4AaABAg.9X8jwyq_lqp9X90Un9v3W8,PLTU,Oppose,Negative,Menyebut adanya penentangan di lokasi (D3/D7)
+37,UgyPdoGpfjrKixsjrg14AaABAg,PLTN,Oppose,Negative,Menyebut dampak buruk batu bara sebagai alasan (D11/D3)
+38,UgzjaHEFC1Gy2U2gYwF4AaABAg,PLTN,Oppose,Negative,"Menyebut bahaya kehancuran dunia sebagai alasan (D3, C4)"
+39,UgjEZI1O8VQLAngCoAEC.8RVS5TkB7Sw9MdiRB7mPZF,PLTN,Oppose,Negative,"Menolak penggunaan listrik/PLTN (D3), nada kecewa/sinis (C4)"
+40,UgwlyPgA5vYVxo0P7j14AaABAg,PLTN,Oppose,Negative,Menyindir ketidakmampuan/pesimis soal kesiapan (D6/D3)
+41,Ugw5DjUlZeuOfRac4vx4AaABAg,PLTU,Support,Negative,"Menolak pensiun PLTU demi industri (D2), nada marah/sinis (C4)"
+42,Ugz8kW82juW-1ybtdyd4AaABAg.9QRzYLiuSWa9QSCCV6cNTU,PLTN,Support,Neutral,Dukungan bersyarat asal bukan untuk perang (D2)
+43,Ugwe66JmMmfJTATZiIB4AaABAg.9xzTtitSs-y9xzXKF63SgR,PLTN,Support,Positive,"Mendukung PLTN dan menyebut manfaat bersih (D2, C2)"
+44,Ugxq_8pyLLE0i1BDIs94AaABAg,PLTN,Support,Positive,Menyebut manfaat ekonomi dan pasokan listrik (D2/C2)
+45,UgwSe7uPSMC3icxX-fd4AaABAg.9O-ey6lBZu49OKV47ftDfF,PLTU,Neutral,Neutral,"Memberi info fakta usia PLTU tanpa menilai (D4, C3)"
+46,UgyIrsnHFpk03f5X9fd4AaABAg,PLTN,Support,Positive,"Menyatakan harapan positif terhadap realisasi proyek (C2, D2)"
+47,Ugx6ss40coTHMlLvLTt4AaABAg,PLTN,Support,Positive,"Menyebut manfaat listrik murah (D2, C2)"
+48,UgyWNqFXGhEDR8csujJ4AaABAg,PLTU,Neutral,Negative,"Kritik pembiayaan tanpa menolak pembangkit (D5), nada sarkas (C4)."
+49,UgyQmWyralX789tB8JB4AaABAg.ADEL1MZ7jx8ADFXwRdQH5M,PLTN,Support,Positive,"Membantah argumen bahaya bencana alam (D8), nada optimis (C2)"
+50,UgxFGDo3diEcLUx3AY14AaABAg.9QSNX9Cr24j9QT94qaK8Rt,PLTN,Support,Positive,"Membantah argumen bahaya, menyebut nuklir lebih aman (D8)"
+51,UgwjsEzHJTwaYbvp1md4AaABAg.9x6y9bx2ivW9xKFW4S_uWB,PLTN,Support,Positive,"Mendukung karena demi kemajuan bangsa (D2, C2)"
+52,UgwPOo5rsqIb4cIKRhd4AaABAg.AK6xFy2qACNAK9WjzuwwFo,PLTN,Neutral,Neutral,"Menjelaskan syarat komunitas tanpa menilai pembangunan PLTN (D4, C3)"
+53,UgzMaCDqWDO_rUKq2SZ4AaABAg,PLTN,Neutral,Neutral,"Bertanya teknis tanpa kesimpulan (D4), nada datar (C3)"
+54,Ugz1YyqJkhStQqb3XUd4AaABAg.APQhtamfOy9APV7PpjSZjN,PLTN,Neutral,Negative,Pesimis soal dana/perawatan tanpa bilang jangan (D6)
+55,Ugzq5A0jbnyOozMSxIB4AaABAg,PLTN,Neutral,Neutral,Pertanyaan tulus mengenai kategori energi (C3)
+56,Ugx3ajUGyngvduWLmrR4AaABAg,PLTU,Support,Positive,Menyebut kemajuan/manfaat tanpa penilaian negatif (C2)
+57,Ugymc4d4YN710ZjCoH94AaABAg,PLTN,Neutral,Neutral,"Bertanya tentang keberadaan PLTN (D4), nada datar (C3)"
+58,UgzULPS0QDdVjzDvyMR4AaABAg.A8dqeDmFQ4_A8m8WSgXRpR,PLTN,Neutral,Neutral,Bertanya mengenai teknis reaktor tanpa kesimpulan (D4)
+59,UgwG_i_LHUHp5VXZPzF4AaABAg,PLTU,,,
+60,UgzyI31XshLh_Yf5sUV4AaABAg,PLTU,Neutral,Neutral,"Memberikan informasi/koreksi data tanpa penilaian (D4, C3)"
+61,UgxzTu-BJdM5kgA95iZ4AaABAg.9OAliSt-wzB9P7dJXxFlJh,PLTU,Neutral,Negative,"Sindiran/sarkasme terhadap kondisi listrik (C4, D13)"
+62,UgwMXY01CKAr8jazhs14AaABAg,UMUM,Neutral,Neutral,Menyebut fakta lokasi tambang tanpa penilaian (D4/C3)
+63,Ugzn8Ug24uzwxD8PcG94AaABAg,UMUM,Neutral,Negative,Kritik kontrak/korupsi tanpa menolak pembangkit (D5)
+64,UgzqWTMSirVTj878W0J4AaABAg,PLTN,Oppose,Neutral,"Menyarankan EBT sebagai pengganti (D11), nada datar (C3)"
+65,UgyzBVbbD78vdlvYu414AaABAg.9teQF4-Vf8q9temFN6PAF5,PLTU,Neutral,Negative,"Menyindir/mengejek argumen polusi dengan sarkasme (C8, C4)"
+66,Ugzz8RC61QcUHEuJdR14AaABAg.9xzvt7JWAWFA-0IksbZx2I,PLTN,Neutral,Negative,"Pesimis soal kesiapan Indonesia tanpa bilang jangan (D6, C4)"
+67,Ugzbks1Eclxn8lrTp694AaABAg.9UH2NMC-Xua9UHAtHoc1ny,PLTU,,,
+68,UgyRsd0n31GYbagVVdF4AaABAg,PLTU,Neutral,Negative,"Menyoroti ketidakkonsistenan investasi dan rencana pensiun (D9, C4)"
+69,UgyAh97j4BEIel7Qp_94AaABAg,PLTN,Support,Positive,"Mendorong keberanian untuk membangun (D2, C2)"
+70,UgwwBV5S51wx938HinJ4AaABAg,PLTU,Oppose,Neutral,"Mengusulkan penggantian total batu bara dengan biomassa (D12, C3)"
+71,UgzFBqqUw05tRpnjYQR4AaABAg,PLTN,Support,Positive,Mendorong pembelian/pembangunan PLTN (D2)
+72,Ugw8uH__meXzCpTwnaF4AaABAg,PLTU,Neutral,Neutral,"Pertanyaan tulus tanpa penilaian (D4, C3)"
+73,UgyiT-0z-EGUobb5Rdp4AaABAg.9sD8JRbEWmWA81U0IkFXkG,UMUM,Neutral,Negative,Menyebut negara lain sudah pakai PLTN tanpa menilai (D4)
+74,UgyNdl1gOvGbF-69FHJ4AaABAg,PLTU,Support,Positive,Mengusulkan pembangunan pembangkit untuk manfaat tertentu (D2)
+75,Ugxo7aESp75KGyJSTdh4AaABAg,PLTU,Neutral,Negative,"Bertanya tentang dampak pekerja (D4), nada prihatin (C4)"
+76,UgyNVW1B8_71KzZNk4V4AaABAg,PLTU,Oppose,Negative,Menyebut meracuni udara dan menguntungkan pengusaha (D3)
+77,UgxK3tbdlxCtvgFpL8J4AaABAg,PLTU,Support,Negative,"Menolak pensiun PLTU karena biaya EBT mahal (D11), nada marah (C4)"
+78,UgxHmAhOuXSrcIyVivp4AaABAg.ADJLczli6cmADJPRghfNGD,PLTN,Support,Neutral,"Membantah argumen bahaya/korupsi (D8), nada informatif (C3)"
+79,UgyopO66rEVxIjYklG54AaABAg.9pgf167kxV89qDrTEj_Bu8,PLTU,Support,Negative,"Membantah argumen lingkungan dengan alasan teknis/biaya (D8, C4)"
+80,UgzpifwNO56TFmMvdFZ4AaABAg.9UHDcVbRCtn9UHVEKv7lAC,PLTU,,,
+81,UgzKuDr5DgQUjQFXv0Z4AaABAg,PLTU,Neutral,Neutral,Bertanya mengenai teknis operasional (D4/C3)
+82,UgzpifwNO56TFmMvdFZ4AaABAg,PLTU,,,
+83,UgytsW6o68CyL70DVmF4AaABAg,PLTN,Support,Positive,"Mendukung penuh manfaat teknologi (D2), nada antusias (C2)"
+84,UgzyA9RloroXncilfLJ4AaABAg,PLTN,Neutral,Neutral,"Bertanya tentang kemampuan teknis tanpa kesimpulan (D4, C3)"
+85,Ugz5Khp7WnE-4-_Qv6Z4AaABAg,UMUM,Neutral,Neutral,"Mengusulkan kombinasi energi agar seimbang (D4, C3)"
+86,UgzDD_9ywwIJRnY59514AaABAg,PLTU,Neutral,Neutral,"Memberikan info teknis cara kerja (D4), nada datar (C3)"
+87,UgxTzwB2l51PV5YWH3l4AaABAg.A31IstttsOPA35P3o4dlrf,PLTN,Neutral,Negative,"Membahas biaya dan teknis tanpa kesimpulan (D4, C4)"
+88,UgwOJgALGpJ2_E_ZVql4AaABAg,PLTU,,,
+89,UgxQsc8ISwqFt9ne8294AaABAg.9UHBJp1y3-x9UJsnz2ZW3U,PLTU,,,
+90,UgzpsJXpUzAqfeGBcPl4AaABAg,PLTN,Support,Neutral,"Menyarankan edukasi sebelum pengembangan (D2, C3)"
+91,Ugz6oeHoSCd8cRRTG954AaABAg,PLTU,Neutral,Negative,"Kritik keuntungan tanpa menolak pembangkit (D5), nada sinis (C4)."
+92,UgzHn7A-jLNEy-OwpDp4AaABAg,UMUM,Oppose,Neutral,Mengusulkan penggantian PLTU dengan EBT (D11/D12)
+93,Ugyxe6GwsAlJGCMZgHZ4AaABAg,PLTU,Oppose,Negative,Menyebut merusak alam dan menyarankan tenaga air (D3/D11)
+94,UgwNcSgj6Uipt8nMz9R4AaABAg,PLTN,Support,Positive,Mendorong segera menjalankan program nuklir (D2)
+95,UgxAEINsOV6d5q6sZfd4AaABAg,PLTN,Oppose,Neutral,Menolak pembangunan PLTN (D3)
+96,UgwTSDbxW2xgmq4Kthx4AaABAg,PLTN,Oppose,Negative,"Menyebut bahaya bencana Chernobyl (D3, C4)"
+97,UgyxzRoIybVQ9vvTvyd4AaABAg.AUgWP9t8-HdAavh3bmbLls,PLTN,Oppose,Negative,"Menjadikan bencana sebagai alasan menolak (D3), nada takut/sinis (C4)"

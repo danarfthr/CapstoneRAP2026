@@ -1,45 +1,45 @@
 i,cid,target,pred_stance,pred_sentiment,alasan
 0,UgzOl4IAWIq3ogRU2Zt4AaABAg,PLTU,Neutral,Neutral,Bertanya mengenai penyebab kenaikan harga batu bara.
-1,Ugx1V4UeQ5vUL5SgfIN4AaABAg,PLTU,,,
-2,UgycNCt6gjBAp0rVHPZ4AaABAg,PLTU,,,
-3,Ugz24wfoHS4zdGZwXNB4AaABAg,UMUM,,,
-4,Ugz13cti5rxONwuMgod4AaABAg,UMUM,,,
+1,Ugx1V4UeQ5vUL5SgfIN4AaABAg,PLTU,Neutral,Neutral,Memberikan informasi operasional PLTU Suralaya
+2,UgycNCt6gjBAp0rVHPZ4AaABAg,PLTU,Support,Positive,Membela penggunaan batubara karena kebutuhan global.
+3,Ugz24wfoHS4zdGZwXNB4AaABAg,UMUM,Neutral,Neutral,Menjelaskan masalah utang antara PLN dan pengusaha batubara.
+4,Ugz13cti5rxONwuMgod4AaABAg,UMUM,Neutral,Negative,Berbagi pengalaman merasakan dampak krisis listrik.
 5,UgzdCtWXH0GVCHJx6fp4AaABAg,PLTU,Neutral,Neutral,Mempertanyakan solusi transisi energi selain PLTN.
-6,Ugw1M4bNt0Q4-4oWD3Z4AaABAg,PLTU,,,
-7,UgxIOiTtELtlND0-txh4AaABAg,UMUM,,,
+6,Ugw1M4bNt0Q4-4oWD3Z4AaABAg,PLTU,Neutral,Negative,Menyatakan keheranan terhadap pelaku bisnis PLTU
+7,UgxIOiTtELtlND0-txh4AaABAg,UMUM,Neutral,Negative,Mengkritik ketidakkonsistenan negara sebagai penghasil batu bara.
 8,Ugzrtu-mXR_RpAnUpPd4AaABAg.9T_fJp7VekR9Th9VXKpKk6,PLTU,,,
 9,UgxFkD8LVp2tdUzMXGF4AaABAg.9bvIBjlDKxg9byXStdtTKc,PLTN,Oppose,Negative,"Menyoroti kendala biaya, teknologi, dan izin internasional."
 10,UgzfoaQy4VcwnG1JN7J4AaABAg,PLTU,,,
 11,UgyS33oZsSFJM1JkfCB4AaABAg,PLTN,Oppose,Negative,Menolak PLTN karena rasa takut.
 12,UgxySYzGj27RZBSnLH14AaABAg,PLTU,,,
 13,UgzfHeTebGnKgdN3aep4AaABAg,PLTN,Oppose,Negative,Khawatir akan korupsi pada pembangunan PLTN.
-14,UgxgYdxvX1ThWM0UDIx4AaABAg,PLTN,,,
+14,UgxgYdxvX1ThWM0UDIx4AaABAg,PLTN,Support,Positive,Mendukung pembangunan tenaga nuklir
 15,UgxymXs-ntiPLDbAnO94AaABAg,PLTN,Support,Positive,Mendukung PLTN karena listrik murah.
 16,UgxySYzGj27RZBSnLH14AaABAg.9tnBTi8ujXK9tycHRwgeOw,PLTU,,,
 17,UgyXevJbv-v_gb59LIR4AaABAg.A_CKHN5-uyoA_GnVoKcaQb,PLTN,,,
 18,UgzlHaOruYiDvnCDriF4AaABAg,PLTN,Neutral,Neutral,Memberikan informasi syarat pengelolaan limbah.
 19,UgyOF7G7WpX2MEwZFwJ4AaABAg,PLTN,,,
-20,UgxbS_PdIsIqjpm4D1x4AaABAg,PLTU,,,
-21,UgyfO5W9oJw6TCvT1Xl4AaABAg,UMUM,,,
-22,UgyywEZeGD20r4A4d994AaABAg,PLTN,,,
+20,UgxbS_PdIsIqjpm4D1x4AaABAg,PLTU,Oppose,Negative,Menyarankan penggunaan cangkang sawit daripada bahan bakar fosil.
+21,UgyfO5W9oJw6TCvT1Xl4AaABAg,UMUM,Neutral,Neutral,Mempertanyakan penggunaan PLTU dibanding sawit.
+22,UgyywEZeGD20r4A4d994AaABAg,PLTN,Neutral,Neutral,Mengakui kelebihan tapi khawatir akan risiko kecelakaan.
 23,Ugz7hLudJj_8hLrQXzp4AaABAg,PLTN,Neutral,Negative,Mempertanyakan biaya dan kondisi oversupply listrik.
 24,UgyaacS99pQFrd1Qf-V4AaABAg,PLTU,Neutral,Neutral,Bertanya tentang operasional generator.
 25,UgzvdGz3a8HSFZuNjeV4AaABAg,PLTU,Neutral,Neutral,Bertanya tentang penutupan PLTU Cina.
-26,UgzdOh_AQitMH5Tq7xF4AaABAg,UMUM,,,
+26,UgzdOh_AQitMH5Tq7xF4AaABAg,UMUM,Neutral,Negative,Menganalisis masalah pembayaran PLN ke PLTU swasta.
 27,UgyjxhqBKJO69HieXy14AaABAg,PLTN,Neutral,Neutral,Bertanya perbandingan bahaya batubara dan nuklir.
 28,UgycVgCMwzEr4s6eYY14AaABAg,PLTU,Neutral,Neutral,Meminta perbandingan efisiensi dengan PLTN.
 29,UgwAtTmUKUM8D_k07It4AaABAg,PLTU,,,
 30,UgxVfm4jRjCMTPOBB9l4AaABAg,PLTU,,,
 31,UgyldrKMy56mnjaZJ2R4AaABAg,PLTN,Oppose,Negative,Menyesali regulasi terkait nuklir.
-32,UgwXtV1Y-kAY33H4VOd4AaABAg.9OwCAdSLGn09P4l-N7CRBp,PLTU,,,
-33,UgwHEw5GHGbFAxy6YgN4AaABAg.9V9e88Stcil9VA_6H3bHPz,PLTN,,,
+32,UgwXtV1Y-kAY33H4VOd4AaABAg.9OwCAdSLGn09P4l-N7CRBp,PLTU,Oppose,Negative,Menuntut penghentian pembangunan PLTU
+33,UgwHEw5GHGbFAxy6YgN4AaABAg.9V9e88Stcil9VA_6H3bHPz,PLTN,Oppose,Negative,Menyatakan ketidaksiapan SDM Indonesia mengelola nuklir.
 34,UgxFvKclHcwlN-5Gaxd4AaABAg,PLTN,Support,Positive,Mendukung teknologi nuklir untuk pelosok negeri.
 35,UgzH5wxD7hgyWW3ZuJ14AaABAg.APE1jmjvQnAAPYQg5b07Qv,PLTN,Neutral,Neutral,Menjelaskan kompleksitas manajemen proyek nuklir.
 36,Ugz-vEKv5NGR9BMBKeN4AaABAg.9X8jwyq_lqp9X90Un9v3W8,PLTU,,,
 37,UgyPdoGpfjrKixsjrg14AaABAg,PLTN,Oppose,Negative,Menyatakan batu bara merusak lingkungan.
-38,UgzjaHEFC1Gy2U2gYwF4AaABAg,PLTN,,,
+38,UgzjaHEFC1Gy2U2gYwF4AaABAg,PLTN,Oppose,Negative,Menganggap nuklir berbahaya bagi dunia
 39,UgjEZI1O8VQLAngCoAEC.8RVS5TkB7Sw9MdiRB7mPZF,PLTN,Oppose,Negative,Menyatakan lebih baik tidak ada listrik daripada ribut.
-40,UgwlyPgA5vYVxo0P7j14AaABAg,PLTN,,,
+40,UgwlyPgA5vYVxo0P7j14AaABAg,PLTN,Oppose,Negative,Menyatakan ketidakpercayaan terhadap kemampuan teknologi nuklir.
 41,Ugw5DjUlZeuOfRac4vx4AaABAg,PLTU,Support,Negative,Menolak pensiun dini PLTU demi industrialisasi.
 42,Ugz8kW82juW-1ybtdyd4AaABAg.9QRzYLiuSWa9QSCCV6cNTU,PLTN,,,
 43,Ugwe66JmMmfJTATZiIB4AaABAg.9xzTtitSs-y9xzXKF63SgR,PLTN,Support,Positive,Mendukung penuh penggunaan PLTN.
@@ -47,35 +47,35 @@ i,cid,target,pred_stance,pred_sentiment,alasan
 45,UgwSe7uPSMC3icxX-fd4AaABAg.9O-ey6lBZu49OKV47ftDfF,PLTU,,,
 46,UgyIrsnHFpk03f5X9fd4AaABAg,PLTN,,,
 47,Ugx6ss40coTHMlLvLTt4AaABAg,PLTN,Support,Positive,Menyatakan listrik nuklir murah.
-48,UgyWNqFXGhEDR8csujJ4AaABAg,PLTU,,,
+48,UgyWNqFXGhEDR8csujJ4AaABAg,PLTU,Neutral,Neutral,Bercanda mengenai utang untuk membeli PLTU
 49,UgyQmWyralX789tB8JB4AaABAg.ADEL1MZ7jx8ADFXwRdQH5M,PLTN,Support,Positive,Mendukung nuklir dengan membandingkan kondisi Jepang.
 50,UgxFGDo3diEcLUx3AY14AaABAg.9QSNX9Cr24j9QT94qaK8Rt,PLTN,,,
 51,UgwjsEzHJTwaYbvp1md4AaABAg.9x6y9bx2ivW9xKFW4S_uWB,PLTN,Support,Positive,Mendukung pengembangan nuklir demi kemajuan bangsa.
-52,UgwPOo5rsqIb4cIKRhd4AaABAg.AK6xFy2qACNAK9WjzuwwFo,PLTN,,,
+52,UgwPOo5rsqIb4cIKRhd4AaABAg.AK6xFy2qACNAK9WjzuwwFo,PLTN,Neutral,Neutral,Komentar singkat yang tidak menyatakan sikap jelas.
 53,UgzMaCDqWDO_rUKq2SZ4AaABAg,PLTN,Neutral,Neutral,Bertanya tentang mekanisme teknis energi.
-54,Ugz1YyqJkhStQqb3XUd4AaABAg.APQhtamfOy9APV7PpjSZjN,PLTN,,,
+54,Ugz1YyqJkhStQqb3XUd4AaABAg.APQhtamfOy9APV7PpjSZjN,PLTN,Neutral,Neutral,Menyoroti biaya perawatan PLTN.
 55,Ugzq5A0jbnyOozMSxIB4AaABAg,PLTN,Neutral,Neutral,Bertanya tentang kategori energi fusi nuklir.
-56,Ugx3ajUGyngvduWLmrR4AaABAg,PLTU,,,
+56,Ugx3ajUGyngvduWLmrR4AaABAg,PLTU,Support,Positive,Menunjukkan kekaguman terhadap kemajuan infrastruktur PLTU.
 57,Ugymc4d4YN710ZjCoH94AaABAg,PLTN,Neutral,Neutral,Bertanya tentang keberadaan PLTN.
-58,UgzULPS0QDdVjzDvyMR4AaABAg.A8dqeDmFQ4_A8m8WSgXRpR,PLTN,,,
+58,UgzULPS0QDdVjzDvyMR4AaABAg.A8dqeDmFQ4_A8m8WSgXRpR,PLTN,Neutral,Neutral,Bertanya secara teknis mengenai struktur reaktor nuklir.
 59,UgwG_i_LHUHp5VXZPzF4AaABAg,PLTU,,,
 60,UgzyI31XshLh_Yf5sUV4AaABAg,PLTU,,,
 61,UgxzTu-BJdM5kgA95iZ4AaABAg.9OAliSt-wzB9P7dJXxFlJh,PLTU,,,
 62,UgwMXY01CKAr8jazhs14AaABAg,UMUM,Neutral,Neutral,Memberikan informasi lokasi tambang batu bara.
-63,Ugzn8Ug24uzwxD8PcG94AaABAg,UMUM,,,
+63,Ugzn8Ug24uzwxD8PcG94AaABAg,UMUM,Neutral,Negative,Menyalahkan kontrak pembangkit swasta atas kondisi PLN.
 64,UgzqWTMSirVTj878W0J4AaABAg,PLTN,Oppose,Positive,Lebih memilih PLTS daripada PLTN.
-65,UgyzBVbbD78vdlvYu414AaABAg.9teQF4-Vf8q9temFN6PAF5,PLTU,,,
+65,UgyzBVbbD78vdlvYu414AaABAg.9teQF4-Vf8q9temFN6PAF5,PLTU,Oppose,Negative,Menyanggah argumen bahwa penutupan PLTU mengurangi polusi.
 66,Ugzz8RC61QcUHEuJdR14AaABAg.9xzvt7JWAWFA-0IksbZx2I,PLTN,Oppose,Negative,Menyatakan Indonesia belum siap memiliki PLTN.
 67,Ugzbks1Eclxn8lrTp694AaABAg.9UH2NMC-Xua9UHAtHoc1ny,PLTU,,,
 68,UgyRsd0n31GYbagVVdF4AaABAg,PLTU,,,
-69,UgyAh97j4BEIel7Qp_94AaABAg,PLTN,,,
-70,UgwwBV5S51wx938HinJ4AaABAg,PLTU,,,
+69,UgyAh97j4BEIel7Qp_94AaABAg,PLTN,Support,Positive,Mendorong keberanian untuk membangun PLTN.
+70,UgwwBV5S51wx938HinJ4AaABAg,PLTU,Neutral,Neutral,Menyarankan perubahan jenis bahan bakar PLTU
 71,UgzFBqqUw05tRpnjYQR4AaABAg,PLTN,,,
 72,Ugw8uH__meXzCpTwnaF4AaABAg,PLTU,Neutral,Neutral,Bertanya alasan penggunaan boiler batu bara.
 73,UgyiT-0z-EGUobb5Rdp4AaABAg.9sD8JRbEWmWA81U0IkFXkG,UMUM,Neutral,Negative,Menyalahkan cukong batubara menghambat kemajuan.
-74,UgyNdl1gOvGbF-69FHJ4AaABAg,PLTU,,,
+74,UgyNdl1gOvGbF-69FHJ4AaABAg,PLTU,Support,Positive,Memberikan saran ide pembangunan pembangkit di Krakatau.
 75,Ugxo7aESp75KGyJSTdh4AaABAg,PLTU,Neutral,Neutral,Bertanya tentang nasib pekerja PLTU.
-76,UgyNVW1B8_71KzZNk4V4AaABAg,PLTU,,,
+76,UgyNVW1B8_71KzZNk4V4AaABAg,PLTU,Oppose,Negative,Menolak PLTU karena polusi dan kepentingan pengusaha.
 77,UgxK3tbdlxCtvgFpL8J4AaABAg,PLTU,Support,Negative,Menolak penghentian PLTU karena alasan biaya energi terbarukan.
 78,UgxHmAhOuXSrcIyVivp4AaABAg.ADJLczli6cmADJPRghfNGD,PLTN,Support,Positive,Menjelaskan keamanan geologis dan pengawasan internasional.
 79,UgyopO66rEVxIjYklG54AaABAg.9pgf167kxV89qDrTEj_Bu8,PLTU,,,
@@ -89,8 +89,8 @@ i,cid,target,pred_stance,pred_sentiment,alasan
 87,UgxTzwB2l51PV5YWH3l4AaABAg.A31IstttsOPA35P3o4dlrf,PLTN,Neutral,Neutral,Memberikan informasi mengenai alasan negara Eropa meninggalkan PLTN.
 88,UgwOJgALGpJ2_E_ZVql4AaABAg,PLTU,,,
 89,UgxQsc8ISwqFt9ne8294AaABAg.9UHBJp1y3-x9UJsnz2ZW3U,PLTU,,,
-90,UgzpsJXpUzAqfeGBcPl4AaABAg,PLTN,,,
-91,Ugz6oeHoSCd8cRRTG954AaABAg,PLTU,,,
+90,UgzpsJXpUzAqfeGBcPl4AaABAg,PLTN,Neutral,Neutral,Menyarankan edukasi masif sebelum mengembangkan nuklir.
+91,Ugz6oeHoSCd8cRRTG954AaABAg,PLTU,Oppose,Negative,Mengkritik pembangunan PLTU menggunakan utang
 92,UgzHn7A-jLNEy-OwpDp4AaABAg,UMUM,Oppose,Neutral,Menyarankan penggantian PLTU dengan energi lain.
 93,Ugyxe6GwsAlJGCMZgHZ4AaABAg,PLTU,,,
 94,UgwNcSgj6Uipt8nMz9R4AaABAg,PLTN,,,
