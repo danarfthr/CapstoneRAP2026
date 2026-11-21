@@ -1,36 +1,28 @@
-/**
- * RankedListCard — Daftar peringkat dengan dropdown (mis. Top Negative/Neutral/Positive).
- * Dipakai untuk "Top Discussion Topics" dan "Top Actor in News".
- *
- * Props:
- * - options  : pilihan dropdown, [{ value, label, tone }]
- *              value = key di data, tone = warna (negative | neutral | positive)
- * - data     : { [value]: [...] }, tiap item: { rank, mentions, [labelKey] }
- * - labelKey : nama field yang ditampilkan ("topic" atau "name")
- * - marks    : ikon kecil per value di samping dropdown
- */
+//RankedListCard: Daftar peringkat dengan dropdown (mis. Top Negative/Neutral/Positive). Dipakai untuk "Top Discussion Topics" dan "Top Actor in News".
+
 "use client";
 
 import { useState } from "react";
 import { Card } from "./Card";
 import styles from "./dashboard.module.css";
 
-/** Pilihan dropdown berdasarkan sentimen (komentar YouTube). */
+//Pilihan dropdown berdasarkan sentimen (komentar YouTube).
 export const SENTIMENT_OPTIONS = [
   { value: "negative", label: "Top Negative", tone: "negative" },
   { value: "neutral", label: "Top Neutral", tone: "neutral" },
   { value: "positive", label: "Top Positive", tone: "positive" },
 ];
 
-/** Pilihan dropdown berdasarkan stance (artikel berita). */
+//pilihan dropdown berdasarkan stance (artikel berita). 
 export const STANCE_OPTIONS = [
   { value: "oppose", label: "Top Oppose", tone: "negative" },
   { value: "neutral", label: "Top Neutral", tone: "neutral" },
   { value: "support", label: "Top Support", tone: "positive" },
 ];
 
-/** 34200 → "34.2k" */
-const formatMentions = (mentions) => `${(mentions / 1000).toFixed(1)}k`;
+//34200 → "34.2k"
+const formatMentions = (mentions) =>
+  mentions >= 1000 ? `${(mentions / 1000).toFixed(1)}k` : String(mentions);
 
 export default function RankedListCard({
   title,
