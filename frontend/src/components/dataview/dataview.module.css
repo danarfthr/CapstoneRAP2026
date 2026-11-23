@@ -1,0 +1,418 @@
+/* ============================================================================
+ * [5] DATA VIEW — dipakai oleh komponen di src/components/dataview/
+ * Header memakai DashboardHeader (dashboard.module.css).
+ * Warna sentimen/stance diambil dari token di src/app/globals.css
+ * ============================================================================ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+}
+
+.main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px 8px;
+  flex: 1;
+}
+
+/* ---------- Section PLTU / PLTN ---------- */
+.section {
+  margin-bottom: 64px;
+  scroll-margin-top: 100px; /* tinggi header + jarak */
+}
+
+.datasetHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  padding-bottom: 8px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.activeTag {
+  display: inline-block;
+  padding: 1px 8px;
+  border: 1px solid #f5b5b3;
+  border-radius: 4px;
+  background: #fff1f0;
+  color: var(--color-negative-text);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.datasetTitle {
+  margin-top: 2px;
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.datasetDescription {
+  max-width: 720px;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
+.corpusBox {
+  flex-shrink: 0;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.corpusLabel {
+  display: block;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.corpusBox strong {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ---------- Bar filter ---------- */
+.filterBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  margin-bottom: 32px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+
+.searchBox {
+  position: relative;
+  flex: 1 1 320px;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--color-text-faint);
+  pointer-events: none;
+}
+
+.searchBox input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px 0 36px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: #fafbfc;
+  font-size: 0.8rem;
+  color: var(--color-text-primary);
+}
+
+.searchBox input::placeholder {
+  color: var(--color-text-faint);
+}
+
+.filterSelect {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.filterSelect select {
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  font-size: 0.78rem;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.resetButton {
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.resetButton:hover {
+  background: var(--color-surface-muted);
+}
+
+.searchBox input:focus-visible,
+.filterSelect select:focus-visible,
+.resetButton:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+/* ---------- Kartu tabel ---------- */
+.tableCard {
+  margin-bottom: 32px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+
+.tableHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: 16px 24px;
+}
+
+.tableTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.tableSubtitle {
+  font-size: 0.75rem;
+  color: var(--color-text-faint);
+}
+
+.entryCount {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.entryDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.entryDot[data-tone="news"] {
+  background: #3b82f6;
+}
+
+.tableScroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table th {
+  padding: 14px 24px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: #f9fafb;
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-label);
+}
+
+.table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table [data-align="center"] {
+  text-align: center;
+}
+
+/* Badge stance/sentimen sedikit lebih besar dari versi dashboard */
+.table .badge {
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+/* Sumber video YouTube: chip link + judul video */
+.videoSource {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.chip,
+.sourceChip {
+  display: inline-block;
+  padding: 1px 7px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface-muted);
+  font-size: 0.66rem;
+  color: var(--color-text-label);
+}
+
+.chip {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: background var(--transition-fast);
+}
+
+.chip:hover {
+  background: var(--color-border);
+}
+
+.videoTitle {
+  font-size: 0.66rem;
+  color: var(--color-text-faint);
+}
+
+.newsTitle {
+  font-weight: 600;
+}
+
+.evidenceCell {
+  background: #fafbfc;
+}
+
+.evidence {
+  color: var(--color-text-secondary);
+}
+
+.emptyCell {
+  text-align: center;
+  color: var(--color-text-faint);
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-top: 1px solid var(--color-border);
+  background: #fafbfc;
+  font-size: 0.75rem;
+  color: var(--color-text-label);
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.perPageSelect {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 8px;
+}
+
+.perPageSelect select {
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  font-size: 0.75rem;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.pagination button {
+  padding: 4px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  font-size: 0.75rem;
+  color: var(--color-text-primary);
+}
+
+.pagination button:disabled {
+  color: #aab2bf;
+  cursor: default;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .datasetHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .datasetTitle {
+    font-size: 1.9rem;
+  }
+
+  .tableHeading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table[data-tone="youtube"] {
+    min-width: 720px;
+  }
+
+  .table[data-tone="news"] {
+    min-width: 900px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 16px 16px 8px;
+  }
+
+  .filterBar {
+    padding: 12px;
+  }
+
+  .searchBox {
+    flex-basis: 100%;
+  }
+
+  .tableHeading,
+  .table th,
+  .table td,
+  .pagination {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

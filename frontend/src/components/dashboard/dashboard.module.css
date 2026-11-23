@@ -1,0 +1,640 @@
+/* ============================================================================
+ * [4] DASHBOARD — dipakai oleh semua komponen di src/components/dashboard/
+ * Warna sentimen/stance diambil dari token di src/app/globals.css
+ * ============================================================================ */
+
+/* ---------- Header (sticky) ----------
+ * Ukuran disamakan dengan navbar landing & loading
+ * (components/layout/layout.module.css): lebar 1280px, tinggi ±80px,
+ * jarak samping 3rem, logo 1.25rem. */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.headerInner {
+  max-width: var(--content-max-width);
+  min-height: 80px;
+  margin: 0 auto;
+  padding: var(--spacing-sm) var(--spacing-2xl);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.logo {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: opacity var(--transition-fast);
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+.headerNav {
+  display: flex;
+  gap: var(--spacing-xl);
+}
+
+.headerNavButton {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.headerNavButton:hover {
+  background: var(--color-bg);
+  border-color: var(--color-text-faint);
+}
+
+.headerNavButton.active,
+.headerNavButton.active:hover {
+  background: var(--color-surface);
+  border-color: #222;
+}
+
+.headerActions {
+  justify-self: end;
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.headerAction {
+  min-height: 40px;
+  padding: 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: #42516b;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.headerAction:hover {
+  background: var(--color-bg);
+}
+
+.headerActionPrimary,
+.headerActionPrimary:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+/* ---------- Konten utama & section PLTU/PLTN ---------- */
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+.section {
+  margin-bottom: 28px;
+  padding: 20px;
+  border-radius: 20px;
+  background: #eef2f6;
+  scroll-margin-top: 100px; /* tinggi header + jarak */
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.sectionDescription {
+  max-width: 720px;
+  margin-bottom: 14px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #56677f;
+}
+
+.sectionDivider {
+  margin: 48px 0 32px;
+  border: none;
+  border-top: 2px solid var(--color-border);
+}
+
+/* ---------- Grid ----------
+ * Jumlah kolom mengikuti jumlah kartu yang tampil (data-columns),
+ * karena kartu bisa disembunyikan tergantung platform yang dipilih. */
+.cardGrid {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.cardGrid[data-columns="1"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.cardGrid[data-columns="2"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cardGrid[data-columns="3"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ---------- Card ---------- */
+.card {
+  min-width: 0;
+  padding: 16px 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04);
+}
+
+.cardSpaced {
+  margin-bottom: 14px;
+}
+
+.cardTall {
+  min-height: 258px;
+}
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cardTitle {
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.iconButton {
+  width: 26px;
+  height: 26px;
+  background: transparent;
+  color: #53647e;
+  font-size: 1.2rem;
+}
+
+/* ---------- Warna per kategori (dipakai bar, legend, stacked bar) ---------- */
+.negative,
+.against {
+  background: var(--color-negative);
+}
+
+.neutral {
+  background: var(--color-neutral);
+}
+
+.positive,
+.support {
+  background: var(--color-positive);
+}
+
+/* ---------- DistributionCard: bar sentimen / stance ---------- */
+.distributionBar {
+  display: flex;
+  height: 10px;
+  margin: 8px 0;
+  overflow: hidden;
+  border-radius: 99px;
+}
+
+.distributionSegment {
+  transition: flex 0.4s ease;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.6rem;
+  color: var(--color-text-label);
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+}
+
+/* ---------- RankedListCard: top topik & top aktor ---------- */
+.sentimentFilter {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 15px 0 8px;
+}
+
+.sentimentFilter select {
+  max-width: 160px;
+  border: 0;
+  background: transparent;
+  color: #151515;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.filterMark {
+  font-weight: 700;
+  color: var(--color-negative);
+}
+
+.filterMark[data-sentiment="neutral"] {
+  color: #687080;
+}
+
+.filterMark[data-sentiment="positive"] {
+  color: var(--color-positive-mark);
+}
+
+.rankedList {
+  display: grid;
+  gap: 2px;
+  list-style: none;
+}
+
+.rankedList li {
+  min-height: 40px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 0.72rem;
+}
+
+.rankedList strong {
+  font-size: 0.67rem;
+  font-weight: 500;
+  color: var(--color-text-label);
+  white-space: nowrap;
+}
+
+/* Peringkat #1 diwarnai sesuai dropdown: negative = merah muda,
+ * neutral = abu-abu, positive = biru (sama dengan bar distribusi) */
+.rankedList[data-sentiment="negative"] li.highlighted {
+  border-color: var(--color-negative-border);
+  background: var(--color-negative-bg);
+}
+
+.rankedList[data-sentiment="negative"] li.highlighted strong {
+  color: var(--color-negative);
+}
+
+.rankedList[data-sentiment="neutral"] li.highlighted {
+  border-color: var(--color-neutral);
+  background: var(--color-neutral-bg);
+}
+
+.rankedList[data-sentiment="neutral"] li.highlighted strong {
+  color: var(--color-neutral-text);
+}
+
+.rankedList[data-sentiment="positive"] li.highlighted {
+  border-color: var(--color-positive-mark);
+  background: var(--color-positive);
+}
+
+.rankedList[data-sentiment="positive"] li.highlighted strong {
+  color: var(--color-positive-text);
+}
+
+/* ---------- StanceSources ---------- */
+.shareList,
+.breakdownList {
+  display: grid;
+  gap: 14px;
+}
+
+.shareList {
+  margin: 20px 0 24px;
+}
+
+.breakdownList {
+  padding: 0 4px 0 18px;
+}
+
+.shareRow {
+  display: grid;
+  grid-template-columns: 52px 1fr 30px;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.66rem;
+}
+
+.shareRow strong {
+  text-align: right;
+}
+
+.shareRow > span,
+.breakdownRow > span {
+  color: var(--color-text-label);
+}
+
+.shareTrack {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #eceef0;
+}
+
+.shareTrack span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #393939;
+}
+
+.breakdownRow {
+  display: grid;
+  gap: 6px;
+  font-size: 0.62rem;
+}
+
+.stackedBar {
+  display: flex;
+  height: 9px;
+  overflow: hidden;
+  border-radius: 99px;
+}
+
+/* ---------- TopActorDetail: dropdown aktor ---------- */
+.actorSelect {
+  display: block;
+  margin: 12px 0;
+}
+
+.actorSelect select {
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid #222;
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 0.72rem;
+}
+
+/* ---------- Tabel ---------- */
+.tableScroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table th {
+  padding: 9px 10px;
+  text-align: left;
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--color-text-label);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table td {
+  padding: 9px 10px;
+  font-size: 0.68rem;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Tabel 2 kolom (berita | stance) */
+.tableTwoCol th:nth-child(1) {
+  width: 80%;
+}
+
+.tableTwoCol th:nth-child(2) {
+  width: 20%;
+}
+
+/* Tabel 3 kolom (teks | info | sentimen) */
+.tableThreeCol th:nth-child(1) {
+  width: 60%;
+}
+
+.tableThreeCol th:nth-child(2),
+.tableThreeCol th:nth-child(3) {
+  width: 20%;
+}
+
+/* ---------- Badge sentimen / stance ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 99px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.badge.negative,
+.badge.against,
+.badge.oppose {
+  background: var(--color-negative-bg);
+  color: var(--color-negative-text);
+}
+
+.badge.neutral {
+  background: var(--color-neutral-bg);
+  color: var(--color-neutral-text);
+}
+
+.badge.positive,
+.badge.support {
+  background: var(--color-positive);
+  color: var(--color-positive-text);
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px 0;
+  border-top: 1px solid var(--color-border-light);
+  font-size: 0.62rem;
+  color: var(--color-text-label);
+}
+
+.pagination div {
+  display: flex;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 4px 9px;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  background: var(--color-surface);
+  color: #25334a;
+}
+
+.pagination button:disabled {
+  color: #aab2bf;
+  cursor: default;
+}
+
+/* ---------- State: memuat & error ---------- */
+.stateContainer {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.errorText {
+  color: var(--color-negative);
+}
+
+.retryButton {
+  padding: 8px 20px;
+  border-radius: 6px;
+  background: var(--color-accent);
+  color: var(--color-surface);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.retryButton:hover {
+  background: var(--color-accent-hover);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--color-text-faint);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  /* 3 kartu → 2 kolom, kartu terakhir selebar penuh */
+  .cardGrid[data-columns="3"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cardGrid[data-columns="3"] > :last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .headerInner {
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-xs);
+    min-height: 0;
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .headerNav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: center;
+    gap: var(--spacing-lg);
+  }
+
+  .headerActions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .headerAction {
+    padding: 0 10px;
+  }
+
+  .headerActionLabel {
+    display: none;
+  }
+
+  .main {
+    padding: 12px;
+  }
+
+  .section {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .sectionTitle {
+    font-size: 1.55rem;
+  }
+
+  .cardGrid[data-columns] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cardGrid[data-columns] > :last-child {
+    grid-column: auto;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .tableTwoCol {
+    min-width: 520px;
+  }
+
+  .tableThreeCol {
+    min-width: 560px;
+  }
+}

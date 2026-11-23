@@ -1,0 +1,112 @@
+/* ============================================================================
+ * [1] LANDING — hero (judul, deskripsi, tombol Start Analysis)
+ * Background, navbar & footer ada di components/layout/layout.module.css
+ * ============================================================================ */
+
+.heroContent {
+  max-width: 720px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.2s forwards;
+}
+
+.heroTitle {
+  font-size: var(--font-size-5xl);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--spacing-lg);
+}
+
+.heroSubtitle {
+  max-width: 560px;
+  margin: 0 auto var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Tombol CTA ---------- */
+.ctaButton {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 1rem 2rem;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-surface);
+  background: var(--color-accent);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: all var(--transition-base);
+}
+
+/* Kilau yang lewat saat hover */
+.ctaButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.ctaButton:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.ctaButton:hover::before {
+  left: 100%;
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.ctaArrow {
+  display: inline-flex;
+  transition: transform var(--transition-fast);
+}
+
+.ctaButton:hover .ctaArrow {
+  transform: translateX(4px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: var(--font-size-3xl);
+  }
+
+  .heroSubtitle {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: var(--font-size-2xl);
+  }
+
+  .ctaButton {
+    padding: 0.875rem 1.5rem;
+    font-size: var(--font-size-sm);
+  }
+}
