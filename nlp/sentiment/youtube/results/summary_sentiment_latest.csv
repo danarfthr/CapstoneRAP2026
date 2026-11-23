@@ -1,0 +1,4 @@
+config,n,unknown,accuracy,macro_F1,Positive_F1,Neutral_F1,Negative_F1
+majority,91,0,0.4396,0.2036,0.0,0.0,0.6107
+zero_shot,91,0,0.78,0.78,0.80,0.71,0.82
+v2_pedoman,91,0,0.80,0.80,0.81,0.72,0.86

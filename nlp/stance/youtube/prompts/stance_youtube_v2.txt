@@ -1,0 +1,45 @@
+Kamu adalah annotator untuk riset opini publik tentang PLTU (pembangkit listrik batu bara) dan PLTN (pembangkit listrik tenaga nuklir) di Indonesia.
+Semua komentar di bawah SUDAH dipastikan relevan. Untuk SETIAP komentar, tentukan STANCE dan SENTIMENT menurut Pedoman Anotasi v2 berikut. Nilai tiap komentar sendiri-sendiri; stance dinilai TERHADAP target yang tertera pada komentar (PLTU/PLTN/UMUM).
+
+== PRINSIP (A) ==
+A3. Yang dinilai isi komentar. Judul/deskripsi video hanya konteks terbatas: untuk memahami kata seperti "itu/ini/proyek ini/jangan/belum saatnya/maksudnya" dan menentukan negara. Jangan menilai dari judul saja.
+A4. Ragu di antara dua label -> pilih yang lebih netral.
+A5. Jangan menebak maksud tersembunyi. Kalau butuh asumsi panjang supaya komentar punya arah, berarti Neutral.
+A6. Target PLTU = PLTU batu bara. Target PLTN = pembangkit tenaga nuklir. Target UMUM = dibahas umum, bukan khusus salah satu.
+
+== STANCE (Support / Oppose / Neutral) ==
+D1. Stance = posisi: pembangkit (sesuai target) di Indonesia sebaiknya ada/dibangun/dilanjutkan, atau tidak.
+D2. Support: ingin dibangun/dilanjutkan, mendorong, membela, menyebut manfaat sebagai alasan, menolak pensiun/penutupan PLTU, keberatan pada dampak penutupan (pekerja, mati listrik). Dukungan bersyarat ("bagus, tapi perlu diperhatikan dampaknya", "asal aman") tetap Support.
+D3. Oppose: menolak, minta dihentikan/dipensiunkan/ditutup/dibatalkan, menyambut pensiun PLTU, menjadikan bahaya sebagai alasan menolak, memastikan bencana ("kalau Indonesia ada PLTN pasti kayak Chernobyl"), menjadikan ketidakmampuan sebagai alasan menolak ("ga mampu, mending jangan").
+D4. Neutral: bertanya, memberi info/fakta, menjelaskan kebijakan tanpa menilai, membahas biaya/teknis tanpa kesimpulan.
+D5. Kritik ke pengelola, korupsi, kontrak, atau pasokan TANPA menolak pembangkitnya -> Neutral. Kalau kritik itu jadi alasan menolak ("pasti dikorupsi, mending ga usah bangun") -> Oppose.
+D6. Pesimis soal kesiapan/kemampuan/dana/izin TANPA bilang sebaiknya jangan ("belum siap", "emang bisa?", "1000 tahun gk bakal bisa") -> Neutral. "Belum saatnya [X]" = menolak X sekarang: "belum saatnya PLTN" -> Oppose PLTN; "belum saatnya pensiun PLTU" -> Support PLTU.
+D7. Takut tanpa penolakan ("yg gua takutin kalau kena gempa...") -> Neutral. Takut + "jangan/mending ga usah" -> Oppose.
+D8. Membantah/mengecilkan argumen bahaya atau kerugian (korban lakalantas lebih banyak, reaktor sekarang aman, lokasi bebas gempa) -> Support. Membantah argumen manfaat -> Oppose.
+D9. Menyoroti ketidakkonsistenan kebijakan (dibangun lalu dipensiunkan, investasi lalu dihentikan) tanpa memihak -> Neutral.
+D10. Komentar membahas dua target: nilai stance UNTUK target yang tertera. Contoh "daripada PLTU, PLTN lebih bersih": untuk target PLTN -> Support, untuk target PLTU -> Oppose.
+D11. EBT sebagai pengganti ("pensiunkan PLTU, ganti surya") -> Oppose target itu. "EBT belum siap/mahal, PLTU jangan dimatikan" -> Support PLTU. "Nuklir energi bersih untuk transisi" -> Support PLTN. Hanya menjelaskan rencana transisi tanpa menilai -> Neutral.
+D12. Bahan bakar PLTU: co-firing/campur atau teknologi rendah emisi yang TETAP membakar batu bara -> Support PLTU. Batu bara diganti TOTAL (biomassa, sampah, cangkang sawit; kata "diganti/dirubah" tanpa "dicampur") -> Oppose PLTU.
+D13. Arah sindiran tidak jelas (bisa menolak pensiun, bisa mengkritik utang) -> Neutral.
+
+== SENTIMENT (Positive / Neutral / Negative) ==
+C1. Sentimen = nada/emosi bagian komentar yang membahas PLTU/PLTN, BUKAN arah dukungannya. Stance dan sentimen boleh beda arah.
+C2. Positive: pujian, harapan, bangga, optimis, antusias, yakin aman, menyebut manfaat (murah, bersih, aman, maju, efisien).
+C3. Neutral: pertanyaan tulus, fakta, info, analisis datar, koreksi data, usulan tanpa kata penilaian, dukungan/penolakan yang diucapkan datar.
+C4. Negative: takut, marah, kecewa, kesal, iba/prihatin, sinis, sarkas, mengejek, pesimis, umpatan, menyebut bahaya atau kerugian.
+C5. Abaikan ejekan ke komentator lain/kreator; ejekan ke kebijakan/pemerintah/Indonesia sebagai pelaksana tetap dihitung.
+C6. Ada "tapi/namun/padahal" -> ambil bagian sesudahnya sebagai kesimpulan. C8. Pertanyaan retoris yang mengejek/menantang/menyindir -> Negative.
+
+== CONTOH ==
+Target PLTU | "Jgn dipensiunkan dulu, listrik kita belum siap" -> stance Support (D2/D6), sentiment Negative (C4)
+Target PLTN | "Mending indo jangan punya PLTN deh" -> stance Oppose (D3), sentiment Neutral (C3, datar)
+Target PLTN | "Kalau ada PLTN pasti meledak kayak Chernobyl" -> stance Oppose (D3), sentiment Negative (C4)
+Target PLTU | "Berarti PLN tidak sanggup membayar pasokan batu bara" -> stance Neutral (D5), sentiment Neutral (C9)
+Target PLTN | "Reaktor sekarang sudah jauh lebih aman kok" -> stance Support (D8), sentiment Positive (C2)
+Target PLTU | "Dibangun mahal-mahal kok malah dipensiunkan?" -> stance Neutral (D9/D13), sentiment Negative (C8)
+
+{{ITEMS}}
+
+== FORMAT JAWABAN ==
+Balas HANYA dengan JSON array (tanpa teks lain, tanpa ```), satu objek per komentar, urutan sama dengan input:
+[{"id": <id>, "alasan": "<maksimal 12 kata, sebut kode aturan>", "stance": "Support|Oppose|Neutral", "sentiment": "Positive|Neutral|Negative"}]

@@ -1,0 +1,15 @@
+Kamu menilai STANCE (sikap) komentar YouTube tentang PLTU (pembangkit batu bara) atau PLTN (pembangkit nuklir) di Indonesia.
+Semua komentar di bawah sudah dipastikan relevan. Untuk SETIAP komentar, tentukan stance-nya TERHADAP target yang tertera (PLTU/PLTN/UMUM), dan sentimennya. Nilai tiap komentar sendiri-sendiri.
+
+STANCE (pilih satu):
+- Support: ingin pembangkit itu ada, dibangun, atau dilanjutkan.
+- Oppose: ingin pembangkit itu dihentikan, dibatalkan, ditutup, atau dipensiunkan.
+- Neutral: bertanya, memberi info/fakta, atau tidak menyatakan sikap jelas.
+
+SENTIMENT (pilih satu): Positive / Neutral / Negative (nada komentar, boleh beda arah dengan stance).
+
+{{ITEMS}}
+
+== FORMAT JAWABAN ==
+Balas HANYA dengan JSON array (tanpa teks lain, tanpa ```), satu objek per komentar, urutan sama dengan input:
+[{"id": <id>, "alasan": "<maksimal 10 kata>", "stance": "Support|Oppose|Neutral", "sentiment": "Positive|Neutral|Negative"}]

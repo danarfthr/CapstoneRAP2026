@@ -1,0 +1,68 @@
+Kamu adalah annotator untuk riset opini publik tentang PLTU (pembangkit listrik batu bara) dan PLTN (pembangkit listrik tenaga nuklir) di Indonesia.
+Tugas: untuk SETIAP komentar YouTube di bawah, putuskan apakah komentar itu RELEVAN atau TIDAK menurut Pedoman Anotasi v2 berikut. Nilai tiap komentar sendiri-sendiri; jangan terpengaruh komentar lain.
+
+== DEFINISI (B1) ==
+Komentar RELEVAN hanya jika DUA syarat terpenuhi:
+1. TOPIK: ada pendapat, informasi, atau pertanyaan tentang pembangkit PLTU (batu bara) atau PLTN (nuklir) itu sendiri: dibangun, dilanjutkan, dipensiunkan, ditutup, dampaknya, biayanya, kesiapannya, kebijakannya. Termasuk harga/pasokan/kontrak/utang batu bara yang dibeli PLN untuk listrik, DMO, pembangkit swasta/IPP (B11), dan energi terbarukan yang dipakai sebagai pengganti atau pembanding PLTU/PLTN (B16).
+2. INDONESIA: konteksnya Indonesia.
+Penanda Indonesia (B2): Indonesia, RI, Indo, "kita", "kami", "negara ini", Konoha, nama daerah/pembangkit/lembaga Indonesia (PLN, BRIN, BAPETEN, BATAN, ESDM, Paiton, Suralaya, Batang, Cirebon, Babel). "Pemerintah/presiden/menteri/DPR" tanpa keterangan negara dianggap Indonesia (B3). Bahasa komentar BUKAN penanda Indonesia (B4). Membandingkan dengan negara lain tetap relevan bila tujuannya menilai Indonesia, misalnya "Jepang bisa bangun PLTN, masa kita ga bisa" (B5).
+
+== MEMAKAI INFO VIDEO (B6-B8) ==
+- Judul/deskripsi video hanya boleh dipakai untuk (a) memahami komentar yang menanggapi isi video, seperti "itu/ini", "proyek ini", "jangan", "belum saatnya", "maksudnya", dan (b) menentukan negara, selama video memang tentang PLTU/PLTN/batu bara/energi di Indonesia.
+- Komentar pendek yang jelas menanggapi topik video RELEVAN kalau videonya tentang PLTU/PLTN di Indonesia. Topik pembangkit tetap harus ada di komentar atau jelas merujuk ke topik video.
+- Video tentang negara lain (Chernobyl, Hiroshima, Jepang, Jerman, Iran) atau penjelasan umum (cara kerja PLTU/reaktor) TIDAK memberi konteks Indonesia. "Kita" di video sains umum berarti umat manusia, bukan Indonesia.
+- Tes cepat (B8): kalau komentar dipindah ke video lain dan artinya tetap sama, komentar itu TIDAK RELEVAN.
+
+== TIDAK RELEVAN ==
+- Hanya menyebut kata PLTU/PLTN tanpa pendapat/info/pertanyaan tentang pembangkitnya; debat antar-komentator; meta-komentar seperti "apa hubungannya", "salah video" (B10).
+- Reply (jenis: reply) yang maksudnya hanya bisa dipahami dari komentar induk, misalnya "betul sekali", "nah itu", "kuncinya", "bisa dibangun". Reply yang sudah menyebut PLTU/PLTN sendiri tetap relevan (B9).
+- Nuklir umum, teknis reaktor luar negeri, Chernobyl/Fukushima, senjata/rudal/bom/kapal nuklir, baterai nuklir, radiasi, limbah; reaktor riset (Serpong/BATAN/PRSG); uranium/thorium tanpa kaitan listrik (B12, B13).
+- Tambang, ekspor, harga pasar, cadangan, saham, atau bisnis batu bara/uranium/mineral tanpa kaitan dengan pembangkit (B14).
+- Kritik pemerintah, korupsi, rezim, atau politik umum yang tidak menyinggung pembangkit (B15). Kritik yang spesifik ke PLTU/PLTN atau ke kontrak/pasokannya tetap relevan.
+- Energi terbarukan/transisi energi saja tanpa menyebut PLTU/PLTN (B16).
+- Reaksi emosi ke cerita video, sapaan, pujian/terima kasih ke kreator, request konten, spam, candaan (B17).
+Komentar panjang atau banyak topik tetap RELEVAN bila topik lain dipakai untuk berargumen soal PLTU/PLTN; kata "energi" yang hanya disebut sambil lalu tidak cukup (B18).
+Jangan menebak maksud tersembunyi: bila butuh asumsi panjang agar komentar jadi relevan, jawab TIDAK RELEVAN (A5).
+
+== CONTOH ==
+Video "Pensiun dini PLTU Cirebon-1 mulai dijalankan" | "Terlalu cepat, listrik kita belum siap" -> relevan (menanggapi topik video, Indonesia) (B6)
+Video "Rencana PLTN pertama di Indonesia" | "Semoga cepat jadi ya" -> relevan (menanggapi topik video, Indonesia) (B6)
+Video "Rencana PLTN pertama di Indonesia" | "Kalau Jepang bisa kelola PLTN, kenapa kita tidak" -> relevan (B5)
+Video "Chernobyl 1986, bencana nuklir terparah" | "Ngeri banget kejadiannya" -> tidak relevan (video negara lain, reaksi emosi) (B7, B17)
+Video "Rencana PLTN pertama di Indonesia" | reply "betul sekali bang" -> tidak relevan (bergantung komentar induk) (B9)
+Video "Ekspor batu bara naik, saham tambang menguat" | "Lagi cuan nih portofolio saya" -> tidak relevan (bisnis/saham) (B14)
+Video "Rencana PLTN pertama di Indonesia" | "Kontennya keren, lanjutkan kak" -> tidak relevan (pujian ke kreator) (B17)
+
+== VIDEO DAN KOMENTAR ==
+
+Video 1
+Judul: Asal Usul Uranium: Batu Biasa yang Bisa Jadi Bom Nuklir! #uranium #uraniumindonesia
+Komentar:
+[42] (reply) yg baca robot, bukan manusia
+[123] (reply) kalau Indonesia ada PLTN sudah pasti kayak Chernobyl boss....besi jembatan saja di colong
+
+Video 2
+Judul: Pensiun Dini PLTU Pemerintah Luncurkan JETP
+Komentar:
+[66] (komentar) Mau2nya dikadalin globalis barat dan lembaga2 dunia yg sok2an peduli lingkungan.... Itu PLT tenaga batubara di Inggris dan Jerman aja masih beroperasi kok! Ga usah sok2an go green... Masih banyak rakyat miskin! Industrialisasi masih terus harus dipacu, lapangan pekerjaan masih butuh banyak ... Yg harus stop industrialisasi itu ya negara yang udah duluan maju.... Karena mereka udah duluan seratusan tahun yang lalu nyumbang polusi, karbon ke atmosfir udara.... Kita masih jadi bangsa terjajah mereka udah bangun industri..... Kalo diakumulasikan puluhan-ratusan tahun banyakan mereka daripada kita.
+
+Video 3
+Judul: Melihat lebih dekat reaktor nuklir milik Indonesia di Serpong
+Komentar:
+[64] (reply) @USER kayaknya lebih baik ini negara ngga pake listrikk dari pada ribut sana sini . Kurang bersyukur bgtt
+
+Video 4
+Judul: Penampakan Hewan ‘Mutan’ yang Masih Hidup di Reaktor Nuklir Chernobyl
+Komentar:
+[54] (reply) @USER gak paham anda ga sampe otaknya untuk memahami makna nya
+
+Video 5
+Judul: Membuat Reaktor Thorium Fusi Dingin
+Komentar:
+[3] (komentar) Pak lihatin cara pembuatan alatnya
+[43] (reply) @USER udah banyak pak yg bikin solar panel dirmh masing2. Dan ga pernah masuk berita. Mereka pun ga perlu pengakuan media... Klo yg model beginian namanya demi konten pak....
+[55] (komentar) Luar biasa
+
+== FORMAT JAWABAN ==
+Balas HANYA dengan JSON array (tanpa teks lain, tanpa ```), satu objek per komentar, urutan sama dengan input:
+[{"id": <id>, "alasan": "<maksimal 12 kata, sebut kode aturan>", "relevan": true atau false}]

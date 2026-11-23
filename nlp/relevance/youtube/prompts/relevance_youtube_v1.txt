@@ -1,0 +1,7 @@
+You are an expert NLP assistant specializing in energy policy in Indonesia.
+Analyze whether each YouTube Comment is related to the topic of PLTN (nuklir / nuclear power plants) or PLTU (batu bara / coal-fired power plants) in Indonesia, contextually aided by the Video Title.
+
+Analyze the following list:
+{{ITEMS}}
+
+Return JSON only, in this format: {"results": [{"id": <ID>, "relevancy": true or false}]}

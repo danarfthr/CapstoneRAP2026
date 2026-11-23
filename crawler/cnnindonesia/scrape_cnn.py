@@ -21,6 +21,7 @@ loader), jadi crawler menunggu konten dinamis termuat sebelum mengambil
 tautan artikel.
 """
 
+import argparse
 import asyncio
 import csv
 import json
@@ -35,11 +36,26 @@ from bs4 import BeautifulSoup
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from query_config import KEYWORDS, START_DATE, END_DATE
+from query_config import KEYWORDS as ALL_KEYWORDS, START_DATE, END_DATE
 
 # Konfigurasi
 BASE_URL = "https://www.cnnindonesia.com"
 SEARCH_URL_TEMPLATE = "https://www.cnnindonesia.com/search?query={query}&page={page}"
+
+# --shard N --shards M: jalankan beberapa proses scrape_cnn.py paralel,
+# masing-masing menggarap 1/M kata kunci (diselang-seling KEYWORDS[N::M] biar
+# kategori PLTN/PLTU/UMUM merata di tiap proses). Tiap shard punya file
+# cache/checkpoint/output sendiri (nggak rebutan satu file yang sama), lalu
+# digabung lewat merge_articles.py di akhir. Default shard=0 shards=1 =
+# perilaku lama, satu proses menggarap semua kata kunci.
+_parser = argparse.ArgumentParser()
+_parser.add_argument("--shard", type=int, default=0)
+_parser.add_argument("--shards", type=int, default=1)
+_args, _ = _parser.parse_known_args()
+SHARD, SHARDS = _args.shard, _args.shards
+
+KEYWORDS: list[tuple[str, str]] = ALL_KEYWORDS[SHARD::SHARDS]
+_suffix = f"_shard{SHARD}" if SHARDS > 1 else ""
 
 # Kata kunci & rentang tahun: lihat crawler/query_config.py (dipakai bareng semua sumber).
 
@@ -47,17 +63,22 @@ SEARCH_URL_TEMPLATE = "https://www.cnnindonesia.com/search?query={query}&page={p
 MAX_PAGES_PER_KEYWORD = 50
 
 # Berkas cache JSONL: satu baris = satu artikel. Dipakai untuk resume.
-CACHE_FILE = Path("cnn_energy_cache.jsonl")
+CACHE_FILE = Path(f"cnn_energy_cache{_suffix}.jsonl")
+
+# Checkpoint: kata kunci yang sudah tuntas (semua halaman pencarian + semua
+# artikelnya sudah dicoba). Dilewati kalau run berikutnya nemu kata kunci ini
+# lagi, jadi restart nggak perlu re-paginasi ulang kata kunci yang sudah selesai.
+COMPLETED_KEYWORDS_FILE = Path(f"cnn_completed_keywords{_suffix}.json")
 
 # Hasil akhir setelah cache diekspor.
-OUTPUT_JSON = Path("hasil_scraping_cnn_attempt2.json")
-OUTPUT_CSV = Path("hasil_scraping_cnn_attempt2.csv")
+OUTPUT_JSON = Path(f"hasil_scraping_cnn_attempt2{_suffix}.json")
+OUTPUT_CSV = Path(f"hasil_scraping_cnn_attempt2{_suffix}.csv")
 
 # Waktu tunggu maksimum saat memuat halaman (ms).
 PAGE_TIMEOUT = 30000
 
 # Jeda antar-permintaan (detik) agar sopan terhadap server CNN.
-REQUEST_DELAY = 1.5
+REQUEST_DELAY = 1.0
 
 # Retry untuk kegagalan jaringan / anti-bot.
 MAX_FETCH_ATTEMPTS = 3
@@ -272,23 +293,22 @@ async def collect_urls_for_keyword(
     return all_urls
 
 def load_seen_urls() -> set[str]:
-    """Baca cache JSONL yang sudah ada agar bisa resume tanpa duplikat."""
+    """Baca SEMUA cache JSONL (punya shard ini + shard lain + cache lama
+    sebelum sharding) biar antar-shard nggak rebutan scrape URL yang sama."""
     seen: set[str] = set()
-    if not CACHE_FILE.exists():
-        return seen
+    for cache_path in sorted(Path(".").glob("cnn_energy_cache*.jsonl")):
+        with open(cache_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    record = json.loads(line)
+                    seen.add(record["url"])
+                except (json.JSONDecodeError, KeyError):
+                    continue
 
-    with open(CACHE_FILE, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                record = json.loads(line)
-                seen.add(record["url"])
-            except (json.JSONDecodeError, KeyError):
-                continue
-
-    print(f"Ditemukan cache: {len(seen)} artikel sudah pernah di-scrape sebelumnya.")
+    print(f"Ditemukan cache: {len(seen)} artikel sudah pernah di-scrape sebelumnya (semua shard).")
     return seen
 
 def append_to_cache(article: dict) -> None:
@@ -296,6 +316,23 @@ def append_to_cache(article: dict) -> None:
     with open(CACHE_FILE, "a", encoding="utf-8") as f:
         f.write(json.dumps(article, ensure_ascii=False) + "\n")
         f.flush()
+
+def load_completed_keywords() -> set[str]:
+    """Gabungan checkpoint punya shard ini + shard lain + checkpoint lama
+    sebelum sharding - satu kata kunci cuma pernah masuk ke satu shard, jadi
+    aman digabung tanpa risiko shard lain kerja dobel."""
+    completed: set[str] = set()
+    for path in Path(".").glob("cnn_completed_keywords*.json"):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                completed.update(json.load(f))
+        except (json.JSONDecodeError, OSError):
+            continue
+    return completed
+
+def save_completed_keywords(completed: set[str]) -> None:
+    with open(COMPLETED_KEYWORDS_FILE, "w", encoding="utf-8") as f:
+        json.dump(sorted(completed), f, ensure_ascii=False, indent=2)
 
 def export_cache_to_final_files() -> int:
     """Ubah cache JSONL menjadi berkas JSON array + CSV akhir."""
@@ -337,12 +374,18 @@ def export_cache_to_final_files() -> int:
 
 async def main() -> None:
     seen_urls = load_seen_urls()
+    completed_keywords = load_completed_keywords()
+    if completed_keywords:
+        print(f"Kata kunci sudah tuntas dari run sebelumnya: {len(completed_keywords)}/{len(KEYWORDS)} - dilewati\n")
 
     resilient = ResilientCrawler()
     await resilient.start()
 
     try:
         for query, target in KEYWORDS:
+            if query in completed_keywords:
+                continue
+
             urls = await collect_urls_for_keyword(resilient, query)
 
             new_urls = [u for u in urls if u not in seen_urls]
@@ -385,6 +428,15 @@ async def main() -> None:
                 append_to_cache(data)
                 print(f"    [v] Tersimpan: {data['judul'][:70]}")
                 await asyncio.sleep(REQUEST_DELAY)
+
+            # Checkpoint: kata kunci ini tuntas (semua halaman + semua
+            # artikelnya sudah dicoba). Simpan sekarang & ekspor ulang file
+            # akhir, supaya restart nggak perlu re-paginasi kata kunci yang
+            # sudah selesai, dan file hasil selalu fresh untuk diserahkan.
+            completed_keywords.add(query)
+            save_completed_keywords(completed_keywords)
+            export_cache_to_final_files()
+            print(f"    [checkpoint] '{query}': tuntas, file hasil sudah di-refresh")
     finally:
         await resilient.close()
 
