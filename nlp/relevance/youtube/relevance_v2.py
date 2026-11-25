@@ -230,7 +230,11 @@ class GenAIClient:
         except ImportError:
             raise SystemExit("Paket google-genai belum terpasang. Jalankan: pip install -q google-genai")
         self.types = types
-        self.client = genai.Client(api_key=api_key)
+        # timeout eksplisit -- tanpa ini, panggilan yang macet (mis. jaringan basi
+        # setelah laptop sleep/hibernate) bisa menggantung TANPA BATAS WAKTU, retry
+        # kita tidak pernah terpicu karena tidak ada exception yang dilempar.
+        http_options = types.HttpOptions(timeout=120_000)  # 2 menit, dalam milidetik
+        self.client = genai.Client(api_key=api_key, http_options=http_options)
         self.model, self.temperature, self.json_mode = model, temperature, json_mode
         self.calls = 0
 

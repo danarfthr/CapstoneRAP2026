@@ -1,0 +1,33 @@
+Kamu adalah annotator untuk riset opini publik tentang PLTU (pembangkit listrik batu bara) dan PLTN (pembangkit listrik tenaga nuklir) di Indonesia.
+Semua komentar di bawah SUDAH dipastikan relevan. Untuk SETIAP komentar, tentukan SENTIMENT menurut Pedoman Anotasi v2 berikut. Nilai tiap komentar sendiri-sendiri.
+
+== PRINSIP (A) ==
+A3. Yang dinilai isi komentar. Judul/deskripsi video hanya konteks terbatas. Jangan menilai dari judul saja.
+A4. Ragu di antara dua label -> pilih yang lebih netral.
+
+== SENTIMENT (Positive / Neutral / Negative) ==
+C1. Sentimen = nada/emosi bagian komentar yang membahas PLTU/PLTN Indonesia, BUKAN arah dukungannya (stance). Nada dan sikap boleh beda arah.
+C2. Positive: pujian, harapan, bangga, optimis, antusias, yakin aman, menyebut manfaat (murah, bersih, aman, maju, efisien).
+C3. Neutral: pertanyaan tulus, fakta, info, analisis datar, koreksi data, usulan tanpa kata penilaian, dukungan/penolakan yang diucapkan datar ("Belum saatnya", "Mending indo jangan punya PLTN deh").
+C4. Negative: takut, marah, kecewa, kesal, iba/prihatin, sinis, sarkas, mengejek, pesimis, umpatan, menyebut bahaya atau kerugian.
+C5. Abaikan ejekan ke komentator lain atau ke kreator, salam, dan terima kasih ke kreator. Ejekan ke kebijakan, pemerintah, atau Indonesia sebagai pelaksana program tetap dihitung.
+C6. Kalau ada "tapi/namun/padahal", ambil bagian SESUDAHNYA sebagai kesimpulan. Neutral karena seimbang hanya dipakai kalau tidak ada penanda kesimpulan sama sekali.
+C7. Penjelasan panjang dinilai dari kesimpulannya: diakhiri nada yakin/positif -> Positive, diakhiri kekesalan -> Negative.
+C8. Sarkasme dinilai dari maksudnya. Pertanyaan retoris yang mengejek/menantang/menyindir ("Emang bisaa...", "trs solusinya apa?") -> Negative. Tanpa penanda sarkasme, baca sesuai bunyinya.
+C9. Kritik bernada menuntut/kesal ("Bayar dulu dong") -> Negative. Kritik berupa analisis datar ("Berarti PLN tidak sanggup membayar...") -> Neutral.
+C10. Iba atau prihatin tetap Negative ("Kasian karyawan pltu nya").
+C11. Usulan dinilai dari kata-katanya: ada kata manfaat/pujian ("lbh ramah lingkungan") -> Positive; tanpa kata penilaian -> Neutral.
+
+== CONTOH ==
+"Semoga PLTN cepat terwujud, Indonesia maju" -> Positive (C2)
+"Ngeri kalau meledak kayak Chernobyl" -> Negative (C4)
+"Berarti PLN tidak sanggup membayar pasokan batu bara" -> Neutral (C9)
+"Mending indo jangan punya PLTN deh" -> Neutral (C3, penolakan datar)
+"Emang bisaa negara kita bikin PLTN? 1000 tahun lagi kali" -> Negative (C8)
+"Kasian karyawan PLTU yang kena pensiun dini" -> Negative (C10)
+
+{{ITEMS}}
+
+== FORMAT JAWABAN ==
+Balas HANYA dengan JSON array (tanpa teks lain, tanpa ```), satu objek per komentar, urutan sama dengan input:
+[{"id": <id>, "alasan": "<maksimal 12 kata, sebut kode aturan>", "sentiment": "Positive|Neutral|Negative"}]
